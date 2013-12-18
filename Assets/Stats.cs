@@ -4,6 +4,7 @@ using System.Collections;
 
 class CharacterStats {
 	public int HP;
+	public int maxHP;
 	public int XP;
 	public int LVL;
 
@@ -12,9 +13,9 @@ class CharacterStats {
 	//int MAG;
 	public int AGI;
 
-	void CalcHP()
+	void CalcMaxHP()
 	{
-		HP = DEF + STR + 5;
+		maxHP = (DEF + STR) / 2  + 5;
 	}
 
 	// adds XP to this characters stats, updates the char's level, and returns true if the char leveled
@@ -34,7 +35,7 @@ class CharacterStats {
 	public CharacterStats()
 	{
 		STR = DEF = 1;
-		CalcHP();
+		CalcMaxHP();
 		XP = 0;
 		LVL = 1;
 	}
@@ -54,13 +55,17 @@ public class Stats : MonoBehaviour {
 	void TestCase()
 	{
 		CharacterStats fighter = new CharacterStats();
-		for(int i=0; i<10; i+=1)
+		for(int i=0; i<15; i+=1)
 		{
 			int xp = (i+1)*10;
 			Debug.Log("figher gained " + xp + " XP");
 			if(fighter.AddXP(xp))
 			{
 				Debug.Log("fighter leveled! Now level " + fighter.LVL);
+
+				Debug.Log("fighter regains all HP!");
+				fighter.HP = fighter.maxHP;
+
 				Debug.Log("putting points into STR");
 				fighter.STR += 4;
 			}
