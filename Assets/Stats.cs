@@ -123,6 +123,17 @@ public class Stats : MonoBehaviour {
  * the "level 1 = 1-1-1-1" is just an assumption.  A player could perhaps choose different starting characters to help tune their party
  * perhaps 2-1-0-1 or 2-2-0-0 (and MAG analogs)
  * 
- * 
+ * Example Battle
+ * fighter vs goblin
+ * 1. goblin goes first because its AGI is higher
+ * 2. goblin does a physical attack on fighter
+ * 3. fighter takes damage depending on her DEF 
+ * 4. fighter chooses physical attack on gobin
+ * 5. goblin takes damage
+ * 6. goblin casts spell 'heal' on self
+ * 7. goblin regains some HP
+ * 8. fighter chooses physical attack on goblin
+ * 9. goblin is killed
+ * 10. fighter is awarded XP (and possibly gains a level)
  * 
  * */
