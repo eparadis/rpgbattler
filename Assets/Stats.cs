@@ -2,7 +2,7 @@
 using System.Collections;
 
 
-class CharacterStats {
+public class CharacterStats {
 	public int HP;
 	public int maxHP;
 	public int XP;
@@ -10,12 +10,17 @@ class CharacterStats {
 
 	public int STR;
 	public int DEF;
-	//int MAG;
+	public int MAG;
 	public int AGI;
 
-	void CalcMaxHP()
+	int CalcMaxHP()
 	{
-		maxHP = (DEF + STR) / 2  + 5;
+		return (DEF + STR) / 2  + 5;
+	}
+
+	int CalcLvl()
+	{
+		return (STR + DEF + MAG + AGI) / 4;	// integer math! 
 	}
 
 	// adds XP to this characters stats, updates the char's level, and returns true if the char leveled
@@ -34,10 +39,21 @@ class CharacterStats {
 
 	public CharacterStats()
 	{
-		STR = DEF = 1;
-		CalcMaxHP();
+		STR = DEF = MAG = AGI = 1;
+		maxHP = CalcMaxHP();
+		LVL = CalcLvl();
 		XP = 0;
-		LVL = 1;
+	}
+
+	public CharacterStats( int str, int def, int mag, int agi)
+	{
+		STR = str;
+		DEF = def;
+		MAG = mag;
+		AGI = agi;
+		maxHP = CalcMaxHP();
+		LVL = CalcLvl();
+		XP = 0;
 	}
 };
 
@@ -77,7 +93,7 @@ public class Stats : MonoBehaviour {
 
 	void Start()
 	{
-		TestCase();
+		//TestCase();
 	}
 }
 
