@@ -21,4 +21,28 @@ public class Character { //: MonoBehaviour {
 		stats = new CharacterStats(str, def, mag, agi);
 		isPC = false;
 	}
+
+	// not sure if this should return something
+	public void PhysicalAttack( Character target)
+	{
+		Debug.Log(string.Format ("{0} is attacking {1}", name, target.name));
+		// figure out if attack is successful
+		if( stats.STR > target.stats.DEF )
+		{
+			// apply damage
+			target.stats.HP -= 1; // TODO how much damage do we do?
+			Debug.Log(string.Format("{0} does {1} damage to {2}",name, 1, target.name));
+		}
+	}
+
+	public void CastHeal( Character target)
+	{
+		int healAmt = stats.MAG;	// figure out how much healing is going to happen
+		target.stats.HP += healAmt;	// apply to target
+		if( target.stats.HP > target.stats.maxHP)
+			target.stats.HP = target.stats.maxHP;
+		Debug.Log(string.Format("{0} heals {1} HP to {2}",name, healAmt, target.name));
+	}
+
+
 }

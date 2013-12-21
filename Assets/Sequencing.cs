@@ -28,6 +28,17 @@ public class Sequencing : MonoBehaviour {
 		foreach( Character c in charList)
 		{
 			Debug.Log( "Turn for: " + c.name );
+			if( c.isPC == false)	// if AI controlled
+			{
+				//Debug.Log("asdf");
+				// ai_mgr.DoBehavior(c, charList); // or i suppose it could do its own CharacterManager.GetChars()
+				if( Random.Range(0,2) == 0)
+					c.PhysicalAttack( charList.Find ( delegate( Character z)
+					                                 {	return z.isPC;	} ) );	// do a physical attack on the first PC in the list
+				else
+					c.CastHeal( charList.Find ( delegate( Character z)
+					                           {	return !z.isPC;	} ) );	// cast 'heal' on the first non-PC in the list
+			}
 			yield return new WaitForSeconds( 1f );
 		}
 		yield return null;
