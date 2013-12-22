@@ -27,7 +27,7 @@ public class Sequencing : MonoBehaviour {
 		              {  return y.stats.AGI.CompareTo( x.stats.AGI); } );		// reverse sort by AGI (DnD style)
 		foreach( Character c in charList)
 		{
-			Debug.Log( "Turn for: " + c.name );
+			//Debug.Log( "Turn for: " + c.name );
 			if( c.isPC == false)	// if AI controlled
 			{
 				//Debug.Log("asdf");
@@ -38,8 +38,12 @@ public class Sequencing : MonoBehaviour {
 				else
 					c.CastHeal( charList.Find ( delegate( Character z)
 					                           {	return !z.isPC;	} ) );	// cast 'heal' on the first non-PC in the list
+				// show a graphic or animation
+				yield return new WaitForSeconds( 1f );
+			} else {
+				yield return StartCoroutine(ShowPlayerBattleMenu());
 			}
-			yield return new WaitForSeconds( 1f );
+
 		}
 		yield return null;
 	}
@@ -62,5 +66,36 @@ public class Sequencing : MonoBehaviour {
 		guiText.text = "RPG Battler\nby Ed P\nPress space to start";
 		while( !Input.GetKeyDown(KeyCode.Space) )
 			yield return null;
+	}
+
+	// present the user with a menu of actions in battle
+	IEnumerator ShowPlayerBattleMenu()
+	{
+		int selection = 0;
+		int menuSize = 4;
+		string[] menu = { "Attack", "Defend", "M.Attack", "M.Heal" };
+		// loop grabbing UP and DOWN keys until RETURN is pressed
+		while( !Input.GetKeyDown(KeyCode.Return) ) 
+		{
+			// draw the menu with a selector arrow on the current option
+			string menuText = "";
+			for(int i=0; i<menuSize; i+=1)
+			{
+				if(selection == i)
+					menuText += "> ";
+				else 
+					menuText += "  ";
+				menuText += menu[i] + "\n";
+			}
+			guiText.text = menuText;
+
+			// move arrow if UP/DOWN key pressed
+			if( Input.GetKeyDown(KeyCode.UpArrow) )
+				selection = (selection - 1) % menuSize;
+			if( Input.GetKeyDown(KeyCode.DownArrow) )
+				selection = (selection + 1) % menuSize;
+			yield return null;
+		}
+		yield return null;
 	}
 }
