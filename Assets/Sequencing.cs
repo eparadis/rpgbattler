@@ -114,7 +114,11 @@ public class Sequencing : MonoBehaviour {
 
 			// move arrow if UP/DOWN key pressed
 			if( Input.GetKeyDown(KeyCode.UpArrow) )
-				actionSelection = (actionSelection - 1) % menuSize;
+			{
+				actionSelection -= 1;
+				if( actionSelection < 0)
+					actionSelection = menuSize - 1;
+			}
 			if( Input.GetKeyDown(KeyCode.DownArrow) )
 				actionSelection = (actionSelection + 1) % menuSize;
 			yield return null;
@@ -193,7 +197,11 @@ public class Sequencing : MonoBehaviour {
 			
 			// move arrow if UP/DOWN key pressed
 			if( Input.GetKeyDown(KeyCode.UpArrow) )
-				genericMenuSelection = (genericMenuSelection - 1) % menuSize;
+			{
+				genericMenuSelection -= 1;
+				if( genericMenuSelection < 0)
+					genericMenuSelection = menuSize - 1;
+			}
 			if( Input.GetKeyDown(KeyCode.DownArrow) )
 				genericMenuSelection = (genericMenuSelection + 1) % menuSize;
 			yield return null;
