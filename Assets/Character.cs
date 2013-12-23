@@ -23,7 +23,7 @@ public class Character { //: MonoBehaviour {
 	}
 
 	// not sure if this should return something
-	public void PhysicalAttack( Character target)
+	public string PhysicalAttack( Character target)
 	{
 		Debug.Log(string.Format ("{0} is attacking {1}", name, target.name));
 		// figure out if attack is successful
@@ -32,16 +32,19 @@ public class Character { //: MonoBehaviour {
 			// apply damage
 			target.stats.HP -= 1; // TODO how much damage do we do?
 			Debug.Log(string.Format("{0} does {1} damage to {2}",name, 1, target.name));
+			return string.Format ("-1 ({0})", target.stats.HP);
 		}
+		return "0";
 	}
 
-	public void CastHeal( Character target)
+	public string CastHeal( Character target)
 	{
 		int healAmt = stats.MAG;	// figure out how much healing is going to happen
 		target.stats.HP += healAmt;	// apply to target
 		if( target.stats.HP > target.stats.maxHP)
 			target.stats.HP = target.stats.maxHP;
 		Debug.Log(string.Format("{0} heals {1} HP to {2}",name, healAmt, target.name));
+		return string.Format ("+1 ({0})", target.stats.HP);
 	}
 
 

@@ -26,6 +26,7 @@ public class CharacterManager : MonoBehaviour {
 		Character enemy = new Character( 1, 1, 1, 1);
 		enemy.name = "Enemy";
 		enemy.isPC = false;
+		enemy.stats.maxHP = 4;
 
 		chars = new List<Character>();
 		chars.Add ( player);

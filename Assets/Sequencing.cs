@@ -27,25 +27,26 @@ public class Sequencing : MonoBehaviour {
 		              {  return y.stats.AGI.CompareTo( x.stats.AGI); } );		// reverse sort by AGI (DnD style)
 		foreach( Character c in charList)
 		{
-			//Debug.Log( "Turn for: " + c.name );
 			if( c.isPC == false)	// if AI controlled
 			{
-				//Debug.Log("asdf");
 				// ai_mgr.DoBehavior(c, charList); // or i suppose it could do its own CharacterManager.GetChars()
+
+				string result;
 				if( Random.Range(0,2) == 0)
 				{
-					yield return StartCoroutine(ShowEnemyActionLabel( c, "Attack"));
-					c.PhysicalAttack( charList.Find ( delegate( Character z)
-					                                 {	return z.isPC;	} ) );	// do a physical attack on the first PC in the list
+					result = c.PhysicalAttack( charList.Find ( delegate( Character z)
+					                                          {	return z.isPC;	} ) );	// do a physical attack on the first PC in the list
+					yield return StartCoroutine(ShowEnemyActionLabel( c, "Attack " + result));
 				} else {
-					yield return StartCoroutine(ShowEnemyActionLabel( c, "Heal"));
-					c.CastHeal( charList.Find ( delegate( Character z)
-					                           {	return !z.isPC;	} ) );	// cast 'heal' on the first non-PC in the list
+					result = c.CastHeal( charList.Find ( delegate( Character z)
+					                                    {	return !z.isPC;	} ) );	// cast 'heal' on the first non-PC in the list
+					yield return StartCoroutine(ShowEnemyActionLabel( c, "Heal " + result));
 				}
 				// show a graphic or animation
 				yield return new WaitForSeconds( 1f );
 			} else {
 				yield return StartCoroutine(ShowPlayerBattleMenu( c));
+				// hide the menu and show a graphic or animation
 			}
 
 		}
