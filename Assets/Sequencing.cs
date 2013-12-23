@@ -139,6 +139,8 @@ public class Sequencing : MonoBehaviour {
 		{
 			// make a list of the enemies
 			List<Character> enemiesChars = cm.GetNPCs();
+			enemiesChars.Sort( delegate(Character x, Character y) {
+								return x.name.CompareTo(y.name); });	// put in alphabetical order by name
 			string[] names = new string[enemiesChars.Count];
 			for(int i=0; i<enemiesChars.Count; i+=1)
 				names[i] = enemiesChars[i].name;
@@ -162,6 +164,8 @@ public class Sequencing : MonoBehaviour {
 		{
 			// make a list of friendlies to heal (including yourself)
 			List<Character> playerChars = cm.GetPCs();
+			playerChars.Sort( delegate(Character x, Character y) {
+								return x.name.CompareTo(y.name); });	// put in alphabetical order by name
 			string[] names = new string[playerChars.Count];
 			for(int i=0; i<playerChars.Count; i+=1)
 				names[i] = playerChars[i].name;
