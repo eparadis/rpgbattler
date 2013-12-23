@@ -42,13 +42,19 @@ public class CharacterManager : MonoBehaviour {
 		player.name = "Fightin' Sam";
 		player.isPC = true;
 
-		Character enemy = new Character( 1, 1, 1, 1);
-		enemy.name = "Bad Dude";
-		enemy.isPC = false;
-		enemy.stats.maxHP = 2;
+		Character enemyA = new Character( 1, 1, 1, 1);
+		enemyA.name = "Bad Dude A";
+		enemyA.isPC = false;
+		enemyA.stats.maxHP = 2;
+
+		Character enemyB = new Character( 1, 1, 1, 1);
+		enemyB.name = "Bad Dude B";
+		enemyB.isPC = false;
+		enemyB.stats.maxHP = 2;
 
 		allChars = new List<Character>();
 		allChars.Add ( player);
-		allChars.Add ( enemy);
+		allChars.Add ( enemyA);
+		allChars.Add ( enemyB);
 	}
 }
