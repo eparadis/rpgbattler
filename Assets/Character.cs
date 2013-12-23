@@ -8,6 +8,7 @@ public class Character { //: MonoBehaviour {
 	public bool isPC;
 	public bool isDead;
 	// maybe some references to graphic assets? like sprites or something?
+	public GameObject gfx;
 
 	public Character()
 	{
@@ -50,5 +51,29 @@ public class Character { //: MonoBehaviour {
 		return string.Format ("+1 ({0})", target.stats.HP);
 	}
 
+	public string CastAttack( Character target)
+	{
+		int dmg = Random.Range( stats.MAG, stats.MAG*2);
+		target.stats.HP -= dmg;
+		Debug.Log(string.Format ("{0} does {1} damage to {2}", name, dmg, target.name));
+		return string.Format ( "{0} ({1})", -dmg, target.stats.HP);
+	}
 
+	public string Defend()
+	{
+		// TODO make some sort of defend flag that is honored in attack and magic attack etc
+		return "DEF up!";
+	}
+
+	// shake the character's icon/sprite back and forth some
+	public IEnumerator ShakeAnimation( float length )
+	{
+		float startTime = Time.time;
+		while( Time.time < startTime + length)
+		{
+			gfx.transform.position = new Vector3(Mathf.PingPong(Time.time, 0.3f)-0.15f + gfx.transform.position.x, gfx.transform.position.y, gfx.transform.position.z);
+			yield return new WaitForSeconds(0.01f);	//TODO scale timing so that we always end on a complete cycle
+		}
+		yield return null;
+	}
 }
