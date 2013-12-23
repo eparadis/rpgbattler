@@ -5,11 +5,23 @@ using System.Collections.Generic;
 
 public class CharacterManager : MonoBehaviour {
 
-	List<Character> chars;
+	List<Character> allChars;
 
-	public List<Character> GetChars()
+	public List<Character> GetAllChars()
 	{
-		return chars;
+		return allChars;
+	}
+
+	public List<Character> GetNPCs()
+	{
+		return allChars.FindAll ( delegate( Character z)
+		                         {	return !z.isPC;	} );
+	}
+
+	public List<Character> GetPCs()
+	{
+		return allChars.FindAll ( delegate( Character z)
+		                         {	return z.isPC;	} );
 	}
 
 	// Use this for initialization
@@ -20,16 +32,16 @@ public class CharacterManager : MonoBehaviour {
 	void PopulateTestCharacters()
 	{
 		Character player = new Character(2, 1, 1, 3);
-		player.name = "Player";
+		player.name = "Fightin' Sam";
 		player.isPC = true;
 
 		Character enemy = new Character( 1, 1, 1, 1);
-		enemy.name = "Enemy";
+		enemy.name = "Bad Dude";
 		enemy.isPC = false;
 		enemy.stats.maxHP = 4;
 
-		chars = new List<Character>();
-		chars.Add ( player);
-		chars.Add ( enemy);
+		allChars = new List<Character>();
+		allChars.Add ( player);
+		allChars.Add ( enemy);
 	}
 }
