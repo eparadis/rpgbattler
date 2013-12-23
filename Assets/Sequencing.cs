@@ -54,13 +54,14 @@ public class Sequencing : MonoBehaviour {
 				// hide the menu and show a graphic or animation
 			}
 		}
-		//cm.RemoveDead();	// This is technically a game design question. a character could die and be 
+		cm.RemoveDead();	// This is technically INTRODUCES a game design question. A character could die and be 
 		// raised INSIDE a single round. He COULD lose his turn that round depending on ordering.
 		// DnD style is to kill more or less immediately
 		// All FF leaves the character "down", simply skipping his or her turn until 'raised'
 		// The question then is whether Heal spells allow for raising or not.
 		// Note: we're already skipping the turns of dead characters; the question here is whether to remove them from the battle field or not,
 		// and if so, when to remove them.
+		// As things work now, we have to remove them so they don't show up on menus and the game can tell everyone is dead.
 		yield return null;
 	}
 
