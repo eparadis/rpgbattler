@@ -41,6 +41,7 @@ public class CharacterStats {
 	{
 		STR = DEF = MAG = AGI = 1;
 		maxHP = CalcMaxHP();
+		HP = maxHP;
 		LVL = CalcLvl();
 		XP = 0;
 	}
@@ -52,6 +53,7 @@ public class CharacterStats {
 		MAG = mag;
 		AGI = agi;
 		maxHP = CalcMaxHP();
+		HP = maxHP;
 		LVL = CalcLvl();
 		XP = 0;
 	}
