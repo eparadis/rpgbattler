@@ -88,7 +88,7 @@ public class Sequencing : MonoBehaviour {
 				if(selection == i)
 					menuText += "\n> ";
 				else 
-					menuText += "\n  ";
+					menuText += "\n   ";
 				menuText += menu[i];
 			}
 			guiText.text = menuText;
@@ -105,7 +105,7 @@ public class Sequencing : MonoBehaviour {
 
 	IEnumerator ShowEnemyActionLabel( Character ch, string action)
 	{
-		string text = "--" + ch.name + "--\n" + action;
+		string text = "--" + ch.name + "--\n  " + action;
 		guiText.text = text;
 		yield return null;
 	}
