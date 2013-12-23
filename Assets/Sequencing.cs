@@ -27,6 +27,9 @@ public class Sequencing : MonoBehaviour {
 		              {  return y.stats.AGI.CompareTo( x.stats.AGI); } );		// reverse sort by AGI (DnD style)
 		foreach( Character ch in charList)
 		{
+			if(ch.isDead)	// skip characters that were killed this round
+				continue;
+
 			if( ch.isPC == false)	// if AI controlled
 			{
 				// ai_mgr.DoBehavior(c, charList); // or i suppose it could do its own CharacterManager.GetChars()
@@ -34,22 +37,24 @@ public class Sequencing : MonoBehaviour {
 				string result;
 				if( Random.Range(0,2) == 0)
 				{
-					result = ch.PhysicalAttack( charList.Find ( delegate( Character z)
-					                                          {	return z.isPC;	} ) );	// do a physical attack on the first PC in the list
+					Character target = charList.Find ( delegate( Character z)
+					                                  {	return z.isPC;	} );
+					result = ch.PhysicalAttack( target );	// do a physical attack on the first PC in the list
 					yield return StartCoroutine(ShowEnemyActionLabel( ch, "Attack " + result));
+					yield return new WaitForSeconds( 1f ); // show a graphic or animation
+					yield return StartCoroutine(CheckForDeath(target));
 				} else {
 					result = ch.CastHeal( charList.Find ( delegate( Character z)
 					                                    {	return !z.isPC;	} ) );	// cast 'heal' on the first non-PC in the list
 					yield return StartCoroutine(ShowEnemyActionLabel( ch, "Heal " + result));
+					yield return new WaitForSeconds( 1f ); // show a graphic or animation
 				}
-				// show a graphic or animation
-				yield return new WaitForSeconds( 1f );
 			} else {
 				yield return StartCoroutine(ShowPlayerBattleMenu( ch));
 				// hide the menu and show a graphic or animation
 			}
-
 		}
+		cm.RemoveDead();
 		yield return null;
 	}
 
@@ -135,11 +140,13 @@ public class Sequencing : MonoBehaviour {
 				result = ch.PhysicalAttack( targetCharacter);
 				yield return StartCoroutine(ShowPlayerActionLabel( ch, "Attack " + result));
 				yield return new WaitForSeconds( 1f ); // show a graphic or animation
+				yield return StartCoroutine(CheckForDeath(targetCharacter));
 			} else {
 				//ch.MagicAttack( targetCharacter);	// though i guess you'll have to select a spell to attack with
 				result = "...thbbbt";
 				yield return StartCoroutine(ShowPlayerActionLabel( ch, "Magic attack " + result));
 				yield return new WaitForSeconds( 1f ); // show a graphic or animation
+				yield return StartCoroutine(CheckForDeath(targetCharacter));
 			}
 		} else if( actionSelection == 3)	// heal
 		{
@@ -161,7 +168,6 @@ public class Sequencing : MonoBehaviour {
 			yield return StartCoroutine(ShowPlayerActionLabel( ch, "Defend " + result));
 			yield return new WaitForSeconds( 1f ); // show a graphic or animation
 		}
-
 
 		yield return null;
 	}
@@ -207,5 +213,16 @@ public class Sequencing : MonoBehaviour {
 		string text = "--" + ch.name + "--\n  " + action;
 		guiText.text = text;
 		yield return null;
+	}
+
+	IEnumerator CheckForDeath( Character ch)
+	{
+		if(ch.stats.HP <= 0)
+		{
+			guiText.text = ch.name + " has died!";
+			ch.isDead = true;
+			yield return new WaitForSeconds(1f);	// play an animation
+		}
+		yield return null; // we could also do a 'hurt' animation here
 	}
 }

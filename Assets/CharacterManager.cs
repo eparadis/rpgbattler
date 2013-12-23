@@ -24,6 +24,13 @@ public class CharacterManager : MonoBehaviour {
 		                         {	return z.isPC;	} );
 	}
 
+	// remove all chars that are marked as dead
+	public void RemoveDead()
+	{
+		allChars.RemoveAll( delegate( Character z)
+		                   { return z.isDead; } );
+	}
+
 	// Use this for initialization
 	void Start () {
 		PopulateTestCharacters();
@@ -38,7 +45,7 @@ public class CharacterManager : MonoBehaviour {
 		Character enemy = new Character( 1, 1, 1, 1);
 		enemy.name = "Bad Dude";
 		enemy.isPC = false;
-		enemy.stats.maxHP = 4;
+		enemy.stats.maxHP = 2;
 
 		allChars = new List<Character>();
 		allChars.Add ( player);
