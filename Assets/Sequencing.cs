@@ -33,15 +33,19 @@ public class Sequencing : MonoBehaviour {
 				//Debug.Log("asdf");
 				// ai_mgr.DoBehavior(c, charList); // or i suppose it could do its own CharacterManager.GetChars()
 				if( Random.Range(0,2) == 0)
+				{
+					yield return StartCoroutine(ShowEnemyActionLabel( c, "Attack"));
 					c.PhysicalAttack( charList.Find ( delegate( Character z)
 					                                 {	return z.isPC;	} ) );	// do a physical attack on the first PC in the list
-				else
+				} else {
+					yield return StartCoroutine(ShowEnemyActionLabel( c, "Heal"));
 					c.CastHeal( charList.Find ( delegate( Character z)
 					                           {	return !z.isPC;	} ) );	// cast 'heal' on the first non-PC in the list
+				}
 				// show a graphic or animation
 				yield return new WaitForSeconds( 1f );
 			} else {
-				yield return StartCoroutine(ShowPlayerBattleMenu());
+				yield return StartCoroutine(ShowPlayerBattleMenu( c));
 			}
 
 		}
@@ -69,7 +73,7 @@ public class Sequencing : MonoBehaviour {
 	}
 
 	// present the user with a menu of actions in battle
-	IEnumerator ShowPlayerBattleMenu()
+	IEnumerator ShowPlayerBattleMenu( Character ch)
 	{
 		int selection = 0;
 		int menuSize = 4;
@@ -78,14 +82,14 @@ public class Sequencing : MonoBehaviour {
 		while( !Input.GetKeyDown(KeyCode.Return) ) 
 		{
 			// draw the menu with a selector arrow on the current option
-			string menuText = "";
+			string menuText = "--" + ch.name + "--";
 			for(int i=0; i<menuSize; i+=1)
 			{
 				if(selection == i)
-					menuText += "> ";
+					menuText += "\n> ";
 				else 
-					menuText += "  ";
-				menuText += menu[i] + "\n";
+					menuText += "\n  ";
+				menuText += menu[i];
 			}
 			guiText.text = menuText;
 
@@ -96,6 +100,13 @@ public class Sequencing : MonoBehaviour {
 				selection = (selection + 1) % menuSize;
 			yield return null;
 		}
+		yield return null;
+	}
+
+	IEnumerator ShowEnemyActionLabel( Character ch, string action)
+	{
+		string text = "--" + ch.name + "--\n" + action;
+		guiText.text = text;
 		yield return null;
 	}
 }
