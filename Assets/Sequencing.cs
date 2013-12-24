@@ -45,10 +45,12 @@ public class Sequencing : MonoBehaviour {
 					yield return StartCoroutine(CheckForDeath(target));
 					yield return StartCoroutine(ch.ReturnHomeAnimation());
 				} else {
-					result = ch.CastHeal( charList.Find ( delegate( Character z)
-					                                    {	return !z.isPC;	} ) );	// cast 'heal' on the first non-PC in the list
+					Character target = charList.Find ( delegate( Character z)
+					                                  {	return !z.isPC;	} ) ;
+					result = ch.CastHeal( target);	// cast 'heal' on the first non-PC in the list
 					yield return StartCoroutine(ShowEnemyActionLabel( ch, "Heal " + result));
-					yield return StartCoroutine(ch.ShakeAnimation(1f)); // show a graphic or animation
+					yield return StartCoroutine(ch.ShootSparklies( Color.green ) ); 
+					yield return StartCoroutine(target.AttractSparklies( Color.green ) );
 				}
 			} else {
 				yield return StartCoroutine(ShowPlayerBattleMenu( ch));
@@ -177,7 +179,8 @@ public class Sequencing : MonoBehaviour {
 
 			result = ch.CastHeal( targetCharacter);
 			yield return StartCoroutine(ShowPlayerActionLabel( ch, "Heal " + result));
-			yield return StartCoroutine(ch.ShakeAnimation(1f)); // show a graphic or animation
+			yield return StartCoroutine(ch.ShootSparklies( Color.green ) ); 
+			yield return StartCoroutine(targetCharacter.AttractSparklies( Color.green ) );
 		} else if( actionSelection == 1)	// defend
 		{
 			//pc.SetDefending(true); // or something like hat

@@ -139,4 +139,37 @@ public class Character { //: MonoBehaviour {
 		
 		yield return null;
 	}
+
+	public IEnumerator ShootSparklies(Color c)
+	{
+		// we need some particles to be emitted from the character 
+		ParticleSystem ps = gfx.GetComponent<ParticleSystem>();
+		if( ps != null)
+		{
+			ps.startColor = c;
+			ps.startSpeed = 2; // outwards
+			ps.Play();
+			yield return new WaitForSeconds( 1f);
+			ps.Stop();
+			ps.Clear();
+		}
+
+		yield return null;
+	}
+
+	public IEnumerator AttractSparklies(Color c)
+	{
+		ParticleSystem ps = gfx.GetComponent<ParticleSystem>();
+		if( ps != null)
+		{
+			ps.startColor = c;
+			ps.startSpeed = -2; // inwards
+			ps.Play();
+			yield return new WaitForSeconds( 1f);
+			ps.Stop();
+			ps.Clear();
+		}
+		
+		yield return null;
+	}
 }
