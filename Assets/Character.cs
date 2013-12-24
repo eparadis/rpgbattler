@@ -77,4 +77,16 @@ public class Character { //: MonoBehaviour {
 		}
 		yield return null;
 	}
+
+	public IEnumerator DeathAnimation()
+	{
+		// TODO the overall length, rotation amount per frame, and delay per frame calcs here are ALL WRONG >:O
+		float speed = 5f;
+		do {
+			Debug.Log( gfx.transform.localEulerAngles.z );
+			gfx.transform.Rotate(0, 0, speed);
+			yield return new WaitForSeconds( (speed / 90f) * 0.5f );	// 0.5 seconds long 
+		} while( gfx.transform.localEulerAngles.z <= 90f);
+		yield return null;
+	}
 }

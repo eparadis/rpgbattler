@@ -240,8 +240,8 @@ public class Sequencing : MonoBehaviour {
 		{
 			guiText.text = ch.name + " has died!";
 			ch.isDead = true;
-			yield return StartCoroutine(ch.ShakeAnimation(1f)); // show a graphic or animation
+			yield return StartCoroutine(ch.DeathAnimation()); // show a graphic or animation
 		}
-		yield return null; // we could also do a 'hurt' animation here
+		else yield return StartCoroutine(ch.ShakeAnimation(0.2f)); // show a 'hurt' animation here
 	}
 }
