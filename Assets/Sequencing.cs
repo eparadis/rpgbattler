@@ -81,12 +81,16 @@ public class Sequencing : MonoBehaviour {
 				//   Check if that was the last round
 				if( cm.GetNPCs().Count == 0)	// all the enemies are dead
 				{
+					guiText.text = "Hurray!\nYou have defeated\nall the enemies!";
 					Debug.Log( "Player has won by defeating all enemies");
 					gameEnded = true;
+					yield return new WaitForSeconds(3f);
 				} else if( cm.GetPCs().Count == 0) // all your characters are dead
 				{
+					guiText.text = "Too bad!\nYou have been\ndefeated.";
 					Debug.Log( "Player has lost by entire team dying");
 					gameEnded = true;
+					yield return new WaitForSeconds(3f);
 				}
 			}
 		}
