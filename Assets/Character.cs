@@ -9,21 +9,26 @@ public class Character { //: MonoBehaviour {
 	public bool isDead;
 	// maybe some references to graphic assets? like sprites or something?
 	public GameObject gfx;
+	Vector3 homePos;
 
-	public Character()
+	public Character( GameObject graphic)
 	{
 		name = "No Name";
 		stats = new CharacterStats();
 		isPC = false;
 		isDead = false;
+		gfx = graphic;
+		homePos = gfx.transform.position;
 	}
 
-	public Character( int str, int def, int mag, int agi)
+	public Character( GameObject graphic, int str, int def, int mag, int agi)
 	{
 		name = "No Name";
 		stats = new CharacterStats(str, def, mag, agi);
 		isPC = false;
 		isDead = false;
+		gfx = graphic;
+		homePos = gfx.transform.position;
 	}
 
 	// not sure if this should return something
@@ -93,15 +98,45 @@ public class Character { //: MonoBehaviour {
 	// slide the character up to its target
 	public IEnumerator ApproachTargetAnimation( Character target)
 	{
-		//TODO we'll need to figure out if the target is facing left or right, so we know what kind of offset to slide to
+		// we need to figure out if the target is facing left or right, so we know what kind of offset to slide to
 		// (negative for NPCs and positive for PCs)
+		Vector3 stop;
+		if( target.isPC)
+			stop = target.gfx.transform.position + new Vector3(  1, 0, 0);
+		else
+			stop = target.gfx.transform.position + new Vector3( -1, 0, 0);
+
+		float startTime = Time.time;
+		float speed = 8f;
+		float journeyLength = Vector3.Distance( homePos, stop);
+		while(gfx.transform.position != stop)
+		{
+			float distCovered = (Time.time - startTime) * speed;
+			float fracJourney = distCovered / journeyLength;
+			gfx.transform.position = Vector3.Lerp(homePos, stop, fracJourney);
+			yield return null;
+		}
+
 		yield return null;
 	}
 
 	// slide the character back to it's 'home' position
 	public IEnumerator ReturnHomeAnimation()
 	{
-		//TODO 'home' needs to be stored for each character, probably on startup/creation, so we can know where to go
+		// 'home' needs to be stored for each character, probably on startup/creation, so we can know where to go
+		Vector3 start = gfx.transform.position;
+
+		float startTime = Time.time;
+		float speed = 8f;
+		float journeyLength = Vector3.Distance( start, homePos);
+		while(gfx.transform.position != homePos)
+		{
+			float distCovered = (Time.time - startTime) * speed;
+			float fracJourney = distCovered / journeyLength;
+			gfx.transform.position = Vector3.Lerp(start, homePos, fracJourney);
+			yield return null;
+		}
+		
 		yield return null;
 	}
 }

@@ -41,8 +41,9 @@ public class Sequencing : MonoBehaviour {
 					                                  {	return z.isPC;	} );
 					result = ch.PhysicalAttack( target );	// do a physical attack on the first PC in the list
 					yield return StartCoroutine(ShowEnemyActionLabel( ch, "Attack " + result));
-					yield return StartCoroutine(ch.ShakeAnimation(1f)); // show a graphic or animation
+					yield return StartCoroutine(ch.ApproachTargetAnimation( target));
 					yield return StartCoroutine(CheckForDeath(target));
+					yield return StartCoroutine(ch.ReturnHomeAnimation());
 				} else {
 					result = ch.CastHeal( charList.Find ( delegate( Character z)
 					                                    {	return !z.isPC;	} ) );	// cast 'heal' on the first non-PC in the list
@@ -152,8 +153,9 @@ public class Sequencing : MonoBehaviour {
 			{
 				result = ch.PhysicalAttack( targetCharacter);
 				yield return StartCoroutine(ShowPlayerActionLabel( ch, "Attack " + result));
-				yield return StartCoroutine(ch.ShakeAnimation(1f)); // show a graphic or animation
+				yield return StartCoroutine(ch.ApproachTargetAnimation( targetCharacter));
 				yield return StartCoroutine(CheckForDeath(targetCharacter));
+				yield return StartCoroutine(ch.ReturnHomeAnimation());
 			} else {
 				//ch.MagicAttack( targetCharacter);	// though i guess you'll have to select a spell to attack with
 				result = "...thbbbt";

@@ -39,22 +39,19 @@ public class CharacterManager : MonoBehaviour {
 
 	void PopulateTestCharacters()
 	{
-		Character player = new Character(2, 1, 1, 3);
+		Character player = new Character(GameObject.Find("blue quad"), 2, 1, 1, 3);
 		player.name = "Fightin' Sam";
 		player.isPC = true;
-		player.gfx = GameObject.Find("blue quad");
 
-		Character enemyA = new Character( 1, 1, 1, 1);
+		Character enemyA = new Character(GameObject.Find("red cube A"), 1, 1, 1, 1);
 		enemyA.name = "Bad Dude A";
 		enemyA.isPC = false;
 		enemyA.stats.maxHP = 2;
-		enemyA.gfx = GameObject.Find("red cube A");
 
-		Character enemyB = new Character( 1, 1, 1, 1);
+		Character enemyB = new Character(GameObject.Find("red cube B"), 1, 1, 1, 1);
 		enemyB.name = "Bad Dude B";
 		enemyB.isPC = false;
 		enemyB.stats.maxHP = 2;
-		enemyB.gfx = GameObject.Find("red cube B");
 
 		allChars = new List<Character>();
 		allChars.Add ( player);
