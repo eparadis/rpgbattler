@@ -89,4 +89,19 @@ public class Character { //: MonoBehaviour {
 		} while( gfx.transform.localEulerAngles.z <= 90f);
 		yield return null;
 	}
+
+	// slide the character up to its target
+	public IEnumerator ApproachTargetAnimation( Character target)
+	{
+		//TODO we'll need to figure out if the target is facing left or right, so we know what kind of offset to slide to
+		// (negative for NPCs and positive for PCs)
+		yield return null;
+	}
+
+	// slide the character back to it's 'home' position
+	public IEnumerator ReturnHomeAnimation()
+	{
+		//TODO 'home' needs to be stored for each character, probably on startup/creation, so we can know where to go
+		yield return null;
+	}
 }
