@@ -69,9 +69,10 @@ public class Character { //: MonoBehaviour {
 	public IEnumerator ShakeAnimation( float length )
 	{
 		float startTime = Time.time;
+		float amplitude = 0.1f;
 		while( Time.time < startTime + length)
 		{
-			gfx.transform.position = new Vector3(Mathf.PingPong(Time.time, 0.3f)-0.15f + gfx.transform.position.x, gfx.transform.position.y, gfx.transform.position.z);
+			gfx.transform.position = new Vector3(Mathf.PingPong(Time.time, amplitude)-amplitude/2f + gfx.transform.position.x, gfx.transform.position.y, gfx.transform.position.z);
 			yield return new WaitForSeconds(0.01f);	//TODO scale timing so that we always end on a complete cycle
 		}
 		yield return null;
