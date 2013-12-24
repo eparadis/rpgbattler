@@ -160,9 +160,10 @@ public class Sequencing : MonoBehaviour {
 				yield return StartCoroutine(ch.ReturnHomeAnimation());
 			} else {
 				//ch.MagicAttack( targetCharacter);	// though i guess you'll have to select a spell to attack with
-				result = "...thbbbt";
+				result = ch.CastAttack( targetCharacter);
 				yield return StartCoroutine(ShowPlayerActionLabel( ch, "Magic attack " + result));
-				yield return StartCoroutine(ch.ShakeAnimation(1f)); // show a graphic or animation
+				yield return StartCoroutine(ch.ShootSparklies( Color.red ) ); 
+				yield return StartCoroutine(targetCharacter.AttractSparklies( Color.red ) );
 				yield return StartCoroutine(CheckForDeath(targetCharacter));
 			}
 		} else if( actionSelection == 3)	// heal
