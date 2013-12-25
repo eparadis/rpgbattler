@@ -186,9 +186,8 @@ public class Sequencing : MonoBehaviour {
 			yield return StartCoroutine(targetCharacter.AttractSparklies( Color.green ) );
 		} else if( actionSelection == 1)	// defend
 		{
-			//pc.SetDefending(true); // or something like hat
-			result = "...thbbbt";
-			yield return StartCoroutine(ShowPlayerActionLabel( ch, "Defend " + result));
+			result = ch.Defend();
+			yield return StartCoroutine(ShowPlayerActionLabel( ch, result));
 			yield return StartCoroutine(ch.ShakeAnimation(1f)); // show a graphic or animation
 		}
 

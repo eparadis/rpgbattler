@@ -10,6 +10,7 @@ public class Character { //: MonoBehaviour {
 	// maybe some references to graphic assets? like sprites or something?
 	public GameObject gfx;
 	Vector3 homePos;
+	public bool isDefending;
 
 	public Character( GameObject graphic)
 	{
@@ -17,6 +18,7 @@ public class Character { //: MonoBehaviour {
 		stats = new CharacterStats();
 		isPC = false;
 		isDead = false;
+		isDefending = false;
 		gfx = graphic;
 		homePos = gfx.transform.position;
 	}
@@ -27,6 +29,7 @@ public class Character { //: MonoBehaviour {
 		stats = new CharacterStats(str, def, mag, agi);
 		isPC = false;
 		isDead = false;
+		isDefending = false;
 		gfx = graphic;
 		homePos = gfx.transform.position;
 	}
@@ -35,15 +38,26 @@ public class Character { //: MonoBehaviour {
 	public string PhysicalAttack( Character target)
 	{
 		Debug.Log(string.Format ("{0} is attacking {1}", name, target.name));
-		// figure out if attack is successful
-		if( stats.STR > target.stats.DEF )
+		if( target.isDefending)
 		{
-			// apply damage
-			target.stats.HP -= 1; // TODO how much damage do we do?
-			Debug.Log(string.Format("{0} does {1} damage to {2}",name, 1, target.name));
-			return string.Format ("-1 ({0})", target.stats.HP);
+			if( stats.STR > target.stats.DEF*2)
+			{
+				target.stats.HP -= 1; // TODO need to rething how physical attacks work in regards to defending
+				Debug.Log(string.Format("{0} does {1} damage to {2}",name, 1, target.name));
+				return string.Format ("-1 ({0})", target.stats.HP);
+			} else
+				return "0";
+		} else {
+			// figure out if attack is successful
+			if( stats.STR > target.stats.DEF )
+			{
+				// apply damage
+				target.stats.HP -= 1; // TODO how much damage do we do?
+				Debug.Log(string.Format("{0} does {1} damage to {2}",name, 1, target.name));
+				return string.Format ("-1 ({0})", target.stats.HP);
+			} else
+				return "0";
 		}
-		return "0";
 	}
 
 	public string CastHeal( Character target)
@@ -59,6 +73,8 @@ public class Character { //: MonoBehaviour {
 	public string CastAttack( Character target)
 	{
 		int dmg = Random.Range( stats.MAG+stats.AGI, (stats.MAG+stats.AGI)*2);
+		if(target.isDefending)
+			dmg /= 2;	// TODO how does defending affect magical attacks?
 		target.stats.HP -= dmg;
 		Debug.Log(string.Format ("{0} does {1} damage to {2}", name, dmg, target.name));
 		return string.Format ( "{0} ({1})", -dmg, target.stats.HP);
@@ -66,8 +82,10 @@ public class Character { //: MonoBehaviour {
 
 	public string Defend()
 	{
-		// TODO make some sort of defend flag that is honored in attack and magic attack etc
-		return "DEF up!";
+		// the defending flag should be honored when calculating any sort of damage effects
+		// though I guess spells could avoid it?
+		isDefending = true;
+		return "Defensive stance!";
 	}
 
 	// shake the character's icon/sprite back and forth some
