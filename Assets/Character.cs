@@ -58,7 +58,7 @@ public class Character { //: MonoBehaviour {
 
 	public string CastAttack( Character target)
 	{
-		int dmg = Random.Range( stats.MAG, stats.MAG*2);
+		int dmg = Random.Range( stats.MAG+stats.AGI, (stats.MAG+stats.AGI)*2);
 		target.stats.HP -= dmg;
 		Debug.Log(string.Format ("{0} does {1} damage to {2}", name, dmg, target.name));
 		return string.Format ( "{0} ({1})", -dmg, target.stats.HP);
