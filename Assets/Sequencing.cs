@@ -13,10 +13,35 @@ public class Sequencing : MonoBehaviour {
 		cm.PopulateTestCharacters();
 		StartCoroutine( "OuterLoop");
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	IEnumerator OuterLoop()
+	{
+		while(true)  // keep the game running forever ( i guess we use Application.Exit() to quit sometime in the future)
+		{
+			yield return StartCoroutine(ShowTitleUntilExit());	// show a title screen until the title screen is exited
+			gameEnded = false;
+			//TODO show the choose a character screen until one is selected
+			cm.PopulateTestCharacters(); // in the future, player chars will be added in the previous step, and enemies will come from some level system or be generated or whatever
+			while(!gameEnded)// start a game and run it until the character dies (or they quit or something..)
+			{
+				yield return StartCoroutine(DoRound ());//   Do a round
+				//   Check if that was the last round
+				if( cm.GetLivingNPCs().Count == 0)	// all the enemies are dead
+				{
+					guiText.text = "Hurray!\nYou have defeated\nall the enemies!";
+					Debug.Log( "Player has won by defeating all enemies");
+					gameEnded = true;
+					yield return new WaitForSeconds(3f);
+				} else if( cm.GetLivingPCs().Count == 0) // all your characters are dead
+				{
+					guiText.text = "Too bad!\nYou have been\ndefeated.";
+					Debug.Log( "Player has lost by entire team dying");
+					gameEnded = true;
+					yield return new WaitForSeconds(3f);
+				}
+			}
+			cm.ResetCharGfx(); // rotate all the dead things back upright to play again
+		}
 	}
 
 	// in a round, all characters/enemies take a turn
@@ -67,36 +92,6 @@ public class Sequencing : MonoBehaviour {
 		// and if so, when to remove them.
 		// As things work now, we have to remove them so they don't show up on menus and the game can tell everyone is dead.
 		yield return null;
-	}
-
-	IEnumerator OuterLoop()
-	{
-		while(true)  // keep the game running forever ( i guess we use Application.Exit() to quit sometime in the future)
-		{
-			yield return StartCoroutine(ShowTitleUntilExit());	// show a title screen until the title screen is exited
-			gameEnded = false;
-			//TODO show the choose a character screen until one is selected
-			cm.PopulateTestCharacters(); // in the future, player chars will be added in the previous step, and enemies will come from some level system or be generated or whatever
-			while(!gameEnded)// start a game and run it until the character dies (or they quit or something..)
-			{
-				yield return StartCoroutine(DoRound ());//   Do a round
-				//   Check if that was the last round
-				if( cm.GetLivingNPCs().Count == 0)	// all the enemies are dead
-				{
-					guiText.text = "Hurray!\nYou have defeated\nall the enemies!";
-					Debug.Log( "Player has won by defeating all enemies");
-					gameEnded = true;
-					yield return new WaitForSeconds(3f);
-				} else if( cm.GetLivingPCs().Count == 0) // all your characters are dead
-				{
-					guiText.text = "Too bad!\nYou have been\ndefeated.";
-					Debug.Log( "Player has lost by entire team dying");
-					gameEnded = true;
-					yield return new WaitForSeconds(3f);
-				}
-			}
-			cm.ResetCharGfx(); // rotate all the dead things back upright to play again
-		}
 	}
 
 	IEnumerator ShowTitleUntilExit()
