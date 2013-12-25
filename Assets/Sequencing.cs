@@ -10,6 +10,7 @@ public class Sequencing : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		cm = GetComponent<CharacterManager>();
+		cm.PopulateTestCharacters();
 		StartCoroutine( "OuterLoop");
 	}
 	
@@ -38,7 +39,7 @@ public class Sequencing : MonoBehaviour {
 				if( Random.Range(0,2) == 0)
 				{
 					Character target = charList.Find ( delegate( Character z)
-					                                  {	return z.isPC;	} );
+					                                  {	return z.isPC && !z.isDead;	} );
 					result = ch.PhysicalAttack( target );	// do a physical attack on the first PC in the list
 					yield return StartCoroutine(ShowEnemyActionLabel( ch, "Attack " + result));
 					yield return StartCoroutine(ch.ApproachTargetAnimation( target));
@@ -46,7 +47,7 @@ public class Sequencing : MonoBehaviour {
 					yield return StartCoroutine(ch.ReturnHomeAnimation());
 				} else {
 					Character target = charList.Find ( delegate( Character z)
-					                                  {	return !z.isPC;	} ) ;
+					                                  {	return !z.isPC && !z.isDead;	} ) ;
 					result = ch.CastHeal( target);	// cast 'heal' on the first non-PC in the list
 					yield return StartCoroutine(ShowEnemyActionLabel( ch, "Heal " + result));
 					yield return StartCoroutine(ch.ShootSparklies( Color.green ) ); 
@@ -57,7 +58,7 @@ public class Sequencing : MonoBehaviour {
 				// hide the menu and show a graphic or animation
 			}
 		}
-		cm.RemoveDead();	// This is technically INTRODUCES a game design question. A character could die and be 
+		//cm.RemoveDead();	// This is technically INTRODUCES a game design question. A character could die and be 
 		// raised INSIDE a single round. He COULD lose his turn that round depending on ordering.
 		// DnD style is to kill more or less immediately
 		// All FF leaves the character "down", simply skipping his or her turn until 'raised'
@@ -74,18 +75,19 @@ public class Sequencing : MonoBehaviour {
 		{
 			yield return StartCoroutine(ShowTitleUntilExit());	// show a title screen until the title screen is exited
 			gameEnded = false;
-			// show the choose a character screen until one is selected
+			//TODO show the choose a character screen until one is selected
+			cm.PopulateTestCharacters(); // in the future, player chars will be added in the previous step, and enemies will come from some level system or be generated or whatever
 			while(!gameEnded)// start a game and run it until the character dies (or they quit or something..)
 			{
 				yield return StartCoroutine(DoRound ());//   Do a round
 				//   Check if that was the last round
-				if( cm.GetNPCs().Count == 0)	// all the enemies are dead
+				if( cm.GetLivingNPCs().Count == 0)	// all the enemies are dead
 				{
 					guiText.text = "Hurray!\nYou have defeated\nall the enemies!";
 					Debug.Log( "Player has won by defeating all enemies");
 					gameEnded = true;
 					yield return new WaitForSeconds(3f);
-				} else if( cm.GetPCs().Count == 0) // all your characters are dead
+				} else if( cm.GetLivingPCs().Count == 0) // all your characters are dead
 				{
 					guiText.text = "Too bad!\nYou have been\ndefeated.";
 					Debug.Log( "Player has lost by entire team dying");
@@ -93,6 +95,7 @@ public class Sequencing : MonoBehaviour {
 					yield return new WaitForSeconds(3f);
 				}
 			}
+			cm.ResetCharGfx(); // rotate all the dead things back upright to play again
 		}
 	}
 
@@ -146,7 +149,7 @@ public class Sequencing : MonoBehaviour {
 		   actionSelection == 2 )	// magic attack
 		{
 			// make a list of the enemies
-			List<Character> enemiesChars = cm.GetNPCs();
+			List<Character> enemiesChars = cm.GetLivingNPCs();
 			enemiesChars.Sort( delegate(Character x, Character y) {
 								return x.name.CompareTo(y.name); });	// put in alphabetical order by name
 			string[] names = new string[enemiesChars.Count];
@@ -173,7 +176,7 @@ public class Sequencing : MonoBehaviour {
 		} else if( actionSelection == 3)	// heal
 		{
 			// make a list of friendlies to heal (including yourself)
-			List<Character> playerChars = cm.GetPCs();
+			List<Character> playerChars = cm.GetLivingPCs();
 			playerChars.Sort( delegate(Character x, Character y) {
 								return x.name.CompareTo(y.name); });	// put in alphabetical order by name
 			string[] names = new string[playerChars.Count];

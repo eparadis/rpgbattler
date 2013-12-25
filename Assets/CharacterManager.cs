@@ -12,16 +12,16 @@ public class CharacterManager : MonoBehaviour {
 		return allChars;
 	}
 
-	public List<Character> GetNPCs()
+	public List<Character> GetLivingNPCs()
 	{
 		return allChars.FindAll ( delegate( Character z)
-		                         {	return !z.isPC;	} );
+		                         {	return !z.isPC && !z.isDead;	} );
 	}
 
-	public List<Character> GetPCs()
+	public List<Character> GetLivingPCs()
 	{
 		return allChars.FindAll ( delegate( Character z)
-		                         {	return z.isPC;	} );
+		                         {	return z.isPC && !z.isDead;	} );
 	}
 
 	// remove all chars that are marked as dead
@@ -32,12 +32,20 @@ public class CharacterManager : MonoBehaviour {
 		// TODO  remove gfx of dead characters too!
 	}
 
-	// Use this for initialization
-	void Start () {
-		PopulateTestCharacters();
+	// this should go away at some point... probably to some sort of Sprite or GFX manager
+	public void ResetCharGfx()
+	{
+		foreach( Character ch in allChars)
+		{
+			ch.gfx.transform.eulerAngles = Vector3.zero;
+		}
 	}
 
-	void PopulateTestCharacters()
+	// Use this for initialization
+	void Start () {
+	}
+
+	public void PopulateTestCharacters()
 	{
 		Character player = new Character(GameObject.Find("blue quad"), 2, 1, 1, 3);
 		player.name = "Fightin' Sam";
