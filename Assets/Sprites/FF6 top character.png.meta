@@ -1,0 +1,387 @@
+fileFormatVersion: 2
+guid: ef4bc2df4f0404b079ed68b891f9c739
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: 0
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: FF6 top character_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 149
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_1
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 149
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_2
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 149
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_3
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 149
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_4
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 149
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_5
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 149
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_6
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 149
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_7
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 149
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_8
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 115
+        width: 15
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_9
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 115
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_10
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 115
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_11
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 115
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_12
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 115
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_13
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 115
+        width: 15
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_14
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 115
+        width: 15
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_15
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 115
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_16
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 78
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_17
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 78
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_18
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 78
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_19
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 78
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_20
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 78
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_21
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 78
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_22
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 78
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_23
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 78
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_24
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 39
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_25
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 39
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_26
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 39
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_27
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 39
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_28
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 39
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_29
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 39
+        width: 15
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_30
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 39
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_31
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 39
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_32
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 6
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_33
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 6
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_34
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 6
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_35
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 6
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_36
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 6
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 top character_37
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 6
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+  spritePackingTag: 
+  userData: 
