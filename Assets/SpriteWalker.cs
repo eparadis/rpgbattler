@@ -3,33 +3,38 @@ using System.Collections;
 
 public class SpriteWalker : MonoBehaviour {
 
-	public float walkSpeed;
-
-	// Use this for initialization
-	void Start () {
+	private Animator animator;
 	
+	// Use this for initialization
+	void Start()
+	{
+		animator = this.GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if( Input.GetKeyDown(KeyCode.LeftArrow))
+	void Update()
+	{
+		
+		var vertical = Input.GetAxis("Vertical");
+		var horizontal = Input.GetAxis("Horizontal");
+		
+		if (vertical > 0)	// north
 		{
-			transform.localScale = new Vector3(1,1,1);
+			animator.SetInteger("Direction", 0);
 		}
-		if( Input.GetKey(KeyCode.LeftArrow))
+		else if (vertical < 0)	// south
 		{
-			transform.Translate( -walkSpeed * Time.deltaTime, 0, 0);
+			animator.SetInteger("Direction", 2);
 		}
-
-		if( Input.GetKeyDown(KeyCode.RightArrow))
+		else if (horizontal < 0)	// west
 		{
-			transform.localScale = new Vector3(-1,1,1);
+			animator.SetInteger("Direction", 3);
+			transform.localScale = new Vector3( 1, 1, 1);	// unflip graphic
 		}
-		if( Input.GetKey( KeyCode.RightArrow))
+		else if (horizontal > 0)	// east
 		{
-			transform.Translate( walkSpeed * Time.deltaTime, 0, 0);
+			animator.SetInteger("Direction", 3);	// this would be 1, but we dont have flipped graphics, and thus must do so here
+			transform.localScale = new Vector3(-1, 1, 1);	// flip graphic
 		}
-
-
 	}
 }
