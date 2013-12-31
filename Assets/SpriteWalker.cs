@@ -18,7 +18,12 @@ public class SpriteWalker : MonoBehaviour {
 		
 		var vertical = Input.GetAxis("Vertical");
 		var horizontal = Input.GetAxis("Horizontal");
-		
+
+		if( vertical == 0 && horizontal == 0)	// no movement
+			animator.SetBool("isIdle", true);
+		else
+			animator.SetBool("isIdle", false);
+
 		if (vertical > 0)	// north
 		{
 			animator.SetInteger("Direction", 0);
