@@ -56,8 +56,8 @@ public class CharacterManager : MonoBehaviour {
 		enemyA.isPC = false;
 		enemyA.stats.maxHP = 2;
 
-		Character enemyB = new Character(GameObject.Find("red cube B"), 2, 1, 1, 1);
-		enemyB.name = "Tough Guy";
+		Character enemyB = new Character(GameObject.Find("frog"), 2, 1, 1, 1);
+		enemyB.name = "Turtle King";
 		enemyB.isPC = false;
 		enemyB.stats.maxHP = 2;
 
