@@ -51,8 +51,8 @@ public class CharacterManager : MonoBehaviour {
 		player.name = "Fightin' Sam";
 		player.isPC = true;
 
-		Character enemyA = new Character(GameObject.Find("red cube A"), 1, 1, 1, 1);
-		enemyA.name = "Bad Dude";
+		Character enemyA = new Character(GameObject.Find("ghost"), 1, 1, 1, 1);
+		enemyA.name = "Spooky Ghost";
 		enemyA.isPC = false;
 		enemyA.stats.maxHP = 2;
 
