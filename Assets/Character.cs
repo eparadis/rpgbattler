@@ -190,4 +190,54 @@ public class Character { //: MonoBehaviour {
 		
 		yield return null;
 	}
+
+	public IEnumerator CastAnimation()
+	{
+		Animator an = gfx.GetComponent<Animator>();
+		if(an != null)
+		{
+			an.SetInteger("Action", 2);
+		}
+		yield return null;
+	}
+
+	public IEnumerator IdleAnimation()
+	{
+		Animator an = gfx.GetComponent<Animator>();
+		if(an != null)
+		{
+			an.SetInteger("Action", 0);
+		}
+		yield return null;
+	}
+
+	public IEnumerator DefendAnimation()
+	{
+		Animator an = gfx.GetComponent<Animator>();
+		if(an != null)
+		{
+			an.SetInteger("Action", 3);
+		}
+		yield return null;
+	}
+
+	public IEnumerator StabAnimation()
+	{
+		Animator an = gfx.GetComponent<Animator>();
+		if(an != null)
+		{
+			an.SetInteger("Action", 1);
+		}
+		yield return null;
+	}
+
+	public IEnumerator StruckAnimation()
+	{
+		Animator an = gfx.GetComponent<Animator>();
+		if(an != null)
+		{
+			an.SetInteger("Action", 4);
+		}
+		yield return null;
+	}
 }

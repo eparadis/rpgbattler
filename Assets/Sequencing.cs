@@ -157,15 +157,23 @@ public class Sequencing : MonoBehaviour {
 			{
 				result = ch.PhysicalAttack( targetCharacter);
 				yield return StartCoroutine(ShowPlayerActionLabel( ch, "Attack " + result));
+				yield return StartCoroutine(ch.IdleAnimation());
+				yield return StartCoroutine(ch.StabAnimation());
 				yield return StartCoroutine(ch.ApproachTargetAnimation( targetCharacter));
 				yield return StartCoroutine(CheckForDeath(targetCharacter));
+				yield return StartCoroutine(ch.IdleAnimation());
 				yield return StartCoroutine(ch.ReturnHomeAnimation());
+
 			} else {
 				//ch.MagicAttack( targetCharacter);	// though i guess you'll have to select a spell to attack with
 				result = ch.CastAttack( targetCharacter);
 				yield return StartCoroutine(ShowPlayerActionLabel( ch, "Magic attack " + result));
+				yield return StartCoroutine(ch.CastAnimation() );
 				yield return StartCoroutine(ch.ShootSparklies( Color.red ) ); 
+				yield return StartCoroutine(ch.IdleAnimation() );
+				yield return StartCoroutine( targetCharacter.StruckAnimation() );
 				yield return StartCoroutine(targetCharacter.AttractSparklies( Color.red ) );
+				yield return StartCoroutine( targetCharacter.IdleAnimation() );
 				yield return StartCoroutine(CheckForDeath(targetCharacter));
 			}
 		} else if( actionSelection == 3)	// heal
@@ -180,15 +188,18 @@ public class Sequencing : MonoBehaviour {
 			yield return StartCoroutine( GenericSelectionMenu( "Choose target", names));
 			targetCharacter = playerChars[genericMenuSelection];
 
+			// do the stats effects and animations
 			result = ch.CastHeal( targetCharacter);
 			yield return StartCoroutine(ShowPlayerActionLabel( ch, "Heal " + result));
+			yield return StartCoroutine(ch.CastAnimation());
 			yield return StartCoroutine(ch.ShootSparklies( Color.green ) ); 
 			yield return StartCoroutine(targetCharacter.AttractSparklies( Color.green ) );
+			yield return StartCoroutine(ch.IdleAnimation());
 		} else if( actionSelection == 1)	// defend
 		{
 			result = ch.Defend();
 			yield return StartCoroutine(ShowPlayerActionLabel( ch, result));
-			yield return StartCoroutine(ch.ShakeAnimation(1f)); // show a graphic or animation
+			yield return StartCoroutine(ch.DefendAnimation());
 		}
 
 		yield return null;
@@ -249,6 +260,6 @@ public class Sequencing : MonoBehaviour {
 			ch.isDead = true;
 			yield return StartCoroutine(ch.DeathAnimation()); // show a graphic or animation
 		}
-		else yield return StartCoroutine(ch.ShakeAnimation(0.2f)); // show a 'hurt' animation here
+		else yield return StartCoroutine(ch.StruckAnimation()); // show a 'hurt' animation here
 	}
 }
