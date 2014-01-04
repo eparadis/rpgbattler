@@ -1,0 +1,396 @@
+fileFormatVersion: 2
+guid: a8c3b237e63574a4d9038e0f465ecc74
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: FF6 fourth character_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 148
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_1
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 148
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_2
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 148
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_3
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 148
+        width: 14
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_4
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 148
+        width: 14
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_5
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 148
+        width: 14
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_6
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 148
+        width: 15
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_7
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 148
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_8
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 115
+        width: 15
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_9
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 115
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_10
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 115
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_11
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 115
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_12
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 115
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_13
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 115
+        width: 15
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_14
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 115
+        width: 15
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_15
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 115
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_16
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 80
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_17
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 80
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_18
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 80
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_19
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 80
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_20
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 80
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_21
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 80
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_22
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 80
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_23
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 81
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_24
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 41
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_25
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 41
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_26
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 41
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_27
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 41
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_28
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 41
+        width: 14
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_29
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 41
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_30
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 41
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_31
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 42
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_32
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 4
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_33
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 4
+        width: 14
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_34
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 5
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_35
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 5
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_36
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 5
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_37
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 5
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 fourth character_38
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 5
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+  spritePackingTag: 
+  userData: 

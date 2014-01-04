@@ -1,0 +1,387 @@
+fileFormatVersion: 2
+guid: 7324c5d21dd5d416eb9a25b298505aa7
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: FF6 ghost_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 132
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_1
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 132
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_2
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 132
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_3
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 132
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_4
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 132
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_5
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 132
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_6
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 132
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_7
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 132
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_8
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 101
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_9
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 101
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_10
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 101
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_11
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 102
+        width: 15
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_12
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 101
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_13
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 101
+        width: 15
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_14
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 101
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_15
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 101
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_16
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 69
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_17
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 69
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_18
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 70
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_19
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 69
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_20
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 69
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_21
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 69
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_22
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 69
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_23
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 69
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_24
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 38
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_25
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 38
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_26
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 38
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_27
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 38
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_28
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 38
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_29
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 39
+        width: 15
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_30
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 39
+        width: 15
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_31
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 40
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_32
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 5
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_33
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 5
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_34
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 5
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_35
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 5
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_36
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 5
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 ghost_37
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 5
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+  spritePackingTag: 
+  userData: 

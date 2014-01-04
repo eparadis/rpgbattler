@@ -1,0 +1,387 @@
+fileFormatVersion: 2
+guid: 7db97c1da6b6b4dcc88587991a140448
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: FF6 frog_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 123
+        width: 15
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_1
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 123
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_2
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 123
+        width: 15
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_3
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 123
+        width: 13
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_4
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 123
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_5
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 123
+        width: 13
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_6
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 123
+        width: 14
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_7
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 123
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_8
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 93
+        width: 14
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_9
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 93
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_10
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 93
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_11
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 94
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_12
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 93
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_13
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 93
+        width: 14
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_14
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 93
+        width: 14
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_15
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 93
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_16
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 63
+        width: 15
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_17
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 63
+        width: 15
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_18
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 63
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_19
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 63
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_20
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 63
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_21
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 63
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_22
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 63
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_23
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 63
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_24
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 34
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_25
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 34
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_26
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 34
+        width: 13
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_27
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 34
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_28
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 34
+        width: 13
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_29
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 34
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_30
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 34
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_31
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 36
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_32
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 5
+        width: 14
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_33
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 5
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_34
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 5
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_35
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 5
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_36
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 5
+        width: 15
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: FF6 frog_37
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 5
+        width: 15
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+  spritePackingTag: 
+  userData: 
