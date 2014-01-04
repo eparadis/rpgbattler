@@ -47,7 +47,7 @@ public class CharacterManager : MonoBehaviour {
 
 	public void PopulateTestCharacters()
 	{
-		Character player = new Character(GameObject.Find("blue quad"), 2, 1, 1, 3);
+		Character player = new Character(GameObject.Find("Hero"), 2, 1, 1, 3);
 		player.name = "Fightin' Sam";
 		player.isPC = true;
 
