@@ -226,7 +226,9 @@ public class Character { //: MonoBehaviour {
 		Animator an = gfx.GetComponent<Animator>();
 		if(an != null)
 		{
-			an.SetInteger("Action", 1);
+			//an.SetInteger("Action", 1);
+			an.SetTrigger("doStab");
+			yield return new WaitForSeconds(1f);
 		}
 		yield return null;
 	}
@@ -236,7 +238,8 @@ public class Character { //: MonoBehaviour {
 		Animator an = gfx.GetComponent<Animator>();
 		if(an != null)
 		{
-			an.SetInteger("Action", 4);
+			//an.SetInteger("Action", 4);
+			an.SetTrigger("doStruck");
 		}
 		yield return null;
 	}

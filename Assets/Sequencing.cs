@@ -67,16 +67,21 @@ public class Sequencing : MonoBehaviour {
 					                                  {	return z.isPC && !z.isDead;	} );
 					result = ch.PhysicalAttack( target );	// do a physical attack on the first PC in the list
 					yield return StartCoroutine(ShowEnemyActionLabel( ch, "Attack " + result));
+					yield return StartCoroutine(ch.IdleAnimation() );
 					yield return StartCoroutine(ch.ApproachTargetAnimation( target));
+					yield return StartCoroutine(ch.StabAnimation() );
 					yield return StartCoroutine(CheckForDeath(target));
+					yield return StartCoroutine(ch.IdleAnimation() );
 					yield return StartCoroutine(ch.ReturnHomeAnimation());
 				} else {
 					Character target = charList.Find ( delegate( Character z)
 					                                  {	return !z.isPC && !z.isDead;	} ) ;
 					result = ch.CastHeal( target);	// cast 'heal' on the first non-PC in the list
 					yield return StartCoroutine(ShowEnemyActionLabel( ch, "Heal " + result));
+					yield return StartCoroutine(ch.CastAnimation());
 					yield return StartCoroutine(ch.ShootSparklies( Color.green ) ); 
 					yield return StartCoroutine(target.AttractSparklies( Color.green ) );
+					yield return StartCoroutine(ch.IdleAnimation() );
 				}
 			} else {
 				yield return StartCoroutine(ShowPlayerBattleMenu( ch));
@@ -158,10 +163,9 @@ public class Sequencing : MonoBehaviour {
 				result = ch.PhysicalAttack( targetCharacter);
 				yield return StartCoroutine(ShowPlayerActionLabel( ch, "Attack " + result));
 				yield return StartCoroutine(ch.IdleAnimation());
-				yield return StartCoroutine(ch.StabAnimation());
 				yield return StartCoroutine(ch.ApproachTargetAnimation( targetCharacter));
+				yield return StartCoroutine(ch.StabAnimation());
 				yield return StartCoroutine(CheckForDeath(targetCharacter));
-				yield return StartCoroutine(ch.IdleAnimation());
 				yield return StartCoroutine(ch.ReturnHomeAnimation());
 
 			} else {
@@ -261,5 +265,6 @@ public class Sequencing : MonoBehaviour {
 			yield return StartCoroutine(ch.DeathAnimation()); // show a graphic or animation
 		}
 		else yield return StartCoroutine(ch.StruckAnimation()); // show a 'hurt' animation here
+		//yield return StartCoroutine(ch.IdleAnimation() );  // then go back to idle
 	}
 }
