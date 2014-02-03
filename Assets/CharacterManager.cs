@@ -66,4 +66,41 @@ public class CharacterManager : MonoBehaviour {
 		allChars.Add ( enemyA);
 		allChars.Add ( enemyB);
 	}
+
+	public void PopulateCharacters()
+	{
+		BattleConfig bc = BattleConfig.GetSingleton();
+
+		Character player;
+
+		// TODO make these player character stats make sense! clerics with more healing power, etc
+		switch( bc.playerCharacter)
+		{
+		case 0:
+			player = new Character(GameObject.Find("Hero"), 2, 1, 1, 3);
+			player.name = "William (WIZ)";
+			player.isPC = true;
+			break;
+		case 1:
+			player = new Character(GameObject.Find("Hero"), 2, 1, 1, 3);
+			player.name = "Nancy (KNI)";
+			player.isPC = true;
+			break;
+		case 2:
+			player = new Character(GameObject.Find("Hero"), 2, 1, 1, 3);
+			player.name = "Clarence (CLR)";
+			player.isPC = true;
+			break;
+		default:
+			break;
+		}
+
+		switch( bc.level)
+		{
+		default:
+			break;
+		}
+
+		PopulateTestCharacters(); // TODO implement the level and character loading!
+	}
 }

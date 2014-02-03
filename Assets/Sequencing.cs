@@ -10,42 +10,36 @@ public class Sequencing : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		cm = GetComponent<CharacterManager>();
-		cm.PopulateTestCharacters();
 		StartCoroutine( "OuterLoop");
 	}
 
+	// runs a single game; ie: a series of rounds until the player loses or wins
 	IEnumerator OuterLoop()
 	{
-		while(true)  // keep the game running forever ( i guess we use Application.Exit() to quit sometime in the future)
+		gameEnded = false;
+		cm.PopulateCharacters();	// load the PC and NPCs
+
+		while(!gameEnded)// start a game and run it until the character dies (or they quit or something..)
 		{
-			yield return StartCoroutine(ShowTitleUntilExit());	// show a title screen until the title screen is exited
-			gameEnded = false;
-			//TODO show the choose a character screen until one is selected
-			cm.PopulateTestCharacters(); // in the future, player chars will be added in the previous step, and enemies will come from some level system or be generated or whatever
-
-			BattleConfig bc = BattleConfig.GetSingleton();
-			Debug.Log( "char " + bc.playerCharacter + " level " + bc.level);
-
-			while(!gameEnded)// start a game and run it until the character dies (or they quit or something..)
+			yield return StartCoroutine(DoRound ());//   Do a round
+			//   Check if that was the last round
+			if( cm.GetLivingNPCs().Count == 0)	// all the enemies are dead
 			{
-				yield return StartCoroutine(DoRound ());//   Do a round
-				//   Check if that was the last round
-				if( cm.GetLivingNPCs().Count == 0)	// all the enemies are dead
-				{
-					guiText.text = "Hurray!\nYou have defeated\nall the enemies!";
-					Debug.Log( "Player has won by defeating all enemies");
-					gameEnded = true;
-					yield return new WaitForSeconds(3f);
-				} else if( cm.GetLivingPCs().Count == 0) // all your characters are dead
-				{
-					guiText.text = "Too bad!\nYou have been\ndefeated.";
-					Debug.Log( "Player has lost by entire team dying");
-					gameEnded = true;
-					yield return new WaitForSeconds(3f);
-				}
+				guiText.text = "Hurray!\nYou have defeated\nall the enemies!";
+				Debug.Log( "Player has won by defeating all enemies");
+				gameEnded = true;
+				yield return new WaitForSeconds(3f);	// TODO replace with some sort of victory animation
+				// TODO advance the level and restart the battle
+			} else if( cm.GetLivingPCs().Count == 0) // all your characters are dead
+			{
+				guiText.text = "Too bad!\nYou have been\ndefeated.";
+				Debug.Log( "Player has lost by entire team dying");
+				gameEnded = true;
+				yield return new WaitForSeconds(3f);	// TODO replace with some sort of loss animation
+				// TODO show high score screen and return to title
 			}
-			cm.ResetCharGfx(); // rotate all the dead things back upright to play again
 		}
+		// this would be reached if the game ended without a win or a loss, such as saving or quitting
 	}
 
 	// in a round, all characters/enemies take a turn
