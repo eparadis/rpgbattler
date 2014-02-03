@@ -22,6 +22,10 @@ public class Sequencing : MonoBehaviour {
 			gameEnded = false;
 			//TODO show the choose a character screen until one is selected
 			cm.PopulateTestCharacters(); // in the future, player chars will be added in the previous step, and enemies will come from some level system or be generated or whatever
+
+			BattleConfig bc = BattleConfig.GetSingleton();
+			Debug.Log( "char " + bc.playerCharacter + " level " + bc.level);
+
 			while(!gameEnded)// start a game and run it until the character dies (or they quit or something..)
 			{
 				yield return StartCoroutine(DoRound ());//   Do a round
