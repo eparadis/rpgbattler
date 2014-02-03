@@ -23,14 +23,29 @@ public class TitleSequencing : MonoBehaviour {
 
 			string[] menuChoices = {"Wizard", "Knight", "Cleric"};
 			yield return StartCoroutine( GenericSelectionMenu( "Select your character:", menuChoices));
-			Debug.Log ( genericMenuSelection);
+			GameObject selectedCharacter = characterIcons[ genericMenuSelection];
 
 			// hide all but the one we selected
 			foreach( GameObject go in characterIcons)
-				if( go != characterIcons[ genericMenuSelection])
+				if( go != selectedCharacter)
 					go.SetActive( false);
+			yield return new WaitForSeconds(1f);	// allow user to see their selection
 
-			yield return new WaitForSeconds(1f);
+			HideCharacterIcons();
+
+			string[] levelChoices = {"Level 1", "Level 2", "Level 3", "Level 4", "Level 5"};
+			yield return StartCoroutine( GenericSelectionMenu( "Select a battle:", levelChoices));
+			int selectedLevel = genericMenuSelection;
+
+			// create a 'battle configuration' object with the selected character and level
+			// new BattleConfig( selectedCharacter, selectedLevel);
+			GameObject battleConfig = new GameObject("battleConfig");
+			BattleConfig bc = battleConfig.AddComponent<BattleConfig>();
+			GameObject.DontDestroyOnLoad( battleConfig); // set it to not destory on load
+			bc.playerCharacter = selectedCharacter;
+			bc.level = selectedLevel;
+
+			Application.LoadLevel("battle"); // switch to battle scene, which will use battleConfig to populate the monsters and stuff
 		}
 	}
 
