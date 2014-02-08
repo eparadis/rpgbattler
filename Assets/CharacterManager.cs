@@ -73,21 +73,20 @@ public class CharacterManager : MonoBehaviour {
 
 		Character player;
 
-		// TODO make these player character stats make sense! clerics with more healing power, etc
 		switch( bc.playerCharacter)
 		{
 		case 0:
-			player = new Character(GameObject.Find("Hero"), 2, 1, 1, 3);
+			player = new Character(GameObject.Find("Hero"), 3, 1, 1, 2);	// GO str def mag agi
 			player.name = "William (WIZ)";
 			player.isPC = true;
 			break;
 		case 1:
-			player = new Character(GameObject.Find("Hero"), 2, 1, 1, 3);
+			player = new Character(GameObject.Find("Hero"), 3, 2, 1, 1);
 			player.name = "Nancy (KNI)";
 			player.isPC = true;
 			break;
 		case 2:
-			player = new Character(GameObject.Find("Hero"), 2, 1, 1, 3);
+			player = new Character(GameObject.Find("Hero"), 1, 3, 1, 2);
 			player.name = "Clarence (CLR)";
 			player.isPC = true;
 			break;
