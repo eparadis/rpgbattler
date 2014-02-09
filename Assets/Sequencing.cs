@@ -4,42 +4,47 @@ using System.Collections.Generic;
 
 public class Sequencing : MonoBehaviour {
 
-	bool gameEnded;
+	bool levelEnded;
 	CharacterManager cm;
+	BattleConfig bc;
 
 	// Use this for initialization
 	void Start () {
 		cm = GetComponent<CharacterManager>();
+		bc = BattleConfig.GetSingleton();
 		StartCoroutine( "OuterLoop");
 	}
 
 	// runs a single game; ie: a series of rounds until the player loses or wins
 	IEnumerator OuterLoop()
 	{
-		gameEnded = false;
+		levelEnded = false;
 		cm.PopulateCharacters();	// load the PC and NPCs
 
-		while(!gameEnded)// start a game and run it until the character dies (or they quit or something..)
+		while(!levelEnded)// start a game and run it until the character dies (or they quit or something..)
 		{
 			yield return StartCoroutine(DoRound ());//   Do a round
 			//   Check if that was the last round
 			if( cm.GetLivingNPCs().Count == 0)	// all the enemies are dead
 			{
-				guiText.text = "Hurray!\nYou have defeated\nall the enemies!";
+				guiText.text = "Hurrah!\nYou have defeated this\nparty of enemies!";
 				Debug.Log( "Player has won by defeating all enemies");
-				gameEnded = true;
+				levelEnded = true;
+				bc.level += 1;	// advance to next level!
 				yield return new WaitForSeconds(3f);	// TODO replace with some sort of victory animation
-				// TODO advance the level and restart the battle
+				// TODO instead of going to the next level, show a character leveling screen, THEN go to the next level
+				Application.LoadLevel ( Application.loadedLevel); // reload the battle scene
 			} else if( cm.GetLivingPCs().Count == 0) // all your characters are dead
 			{
 				guiText.text = "Too bad!\nYou have been\ndefeated.";
 				Debug.Log( "Player has lost by entire team dying");
-				gameEnded = true;
+				levelEnded = true;
 				yield return new WaitForSeconds(3f);	// TODO replace with some sort of loss animation
-				// TODO show high score screen and return to title
+				// TODO show high score screen (your score would be the level you completed, I suppose)
+				Application.LoadLevel (0); // zero is the title
 			}
 		}
-		// this would be reached if the game ended without a win or a loss, such as saving or quitting
+		// this would be reached if the level ended without a win or a loss, such as saving or quitting
 	}
 
 	// in a round, all characters/enemies take a turn
@@ -63,6 +68,8 @@ public class Sequencing : MonoBehaviour {
 				{
 					Character target = charList.Find ( delegate( Character z)
 					                                  {	return z.isPC && !z.isDead;	} );
+					if( target == null)
+						continue;	// if there are no living characters, just skip this NPC's turn
 					result = ch.PhysicalAttack( target );	// do a physical attack on the first PC in the list
 					yield return StartCoroutine(ShowEnemyActionLabel( ch, "Attack " + result));
 					yield return StartCoroutine(ch.IdleAnimation() );
