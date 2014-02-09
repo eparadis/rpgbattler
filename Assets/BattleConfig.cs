@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BattleConfig : MonoBehaviour {
 	
-	public int level;
+	public int level;	// level is one-based.  the first level is '1'
 	public int playerCharacter;
 	
 	// Use this for initialization; remember that this is called on the start of a level load, even if we're coming in from a previous scene
@@ -13,8 +13,8 @@ public class BattleConfig : MonoBehaviour {
 
 	public void SetDefaults()
 	{
-		level = 0;
-		playerCharacter = 0;
+		level = 5;
+		playerCharacter = 1;
 	}
 
 	static public BattleConfig GetSingleton()

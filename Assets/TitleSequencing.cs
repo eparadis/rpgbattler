@@ -40,7 +40,7 @@ public class TitleSequencing : MonoBehaviour {
 			// create a 'battle configuration' object with the selected character and level
 			BattleConfig bc = BattleConfig.GetSingleton();
 			bc.playerCharacter = selectedCharacter;
-			bc.level = selectedLevel;
+			bc.level = selectedLevel + 1;
 
 			Application.LoadLevel("battle"); // switch to battle scene, which will use battleConfig to populate the monsters and stuff
 		}

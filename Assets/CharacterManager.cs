@@ -71,35 +71,45 @@ public class CharacterManager : MonoBehaviour {
 	{
 		BattleConfig bc = BattleConfig.GetSingleton();
 
+		allChars = new List<Character>();
 		Character player;
 
 		switch( bc.playerCharacter)
 		{
 		case 0:
-			player = new Character(GameObject.Find("Hero"), 3, 1, 1, 2);	// GO str def mag agi
-			player.name = "William (WIZ)";
+		default:
+			GameObject wiz = (GameObject) GameObject.Instantiate( GameObject.Find("player ghost") );
+			wiz.transform.position = new Vector3( -4.5f, -1.6f, 0);
+			player = new Character( wiz , 3, 1, 1, 2);	// GO str def mag agi
+			player.name = "Wilma (WIZ)";
 			player.isPC = true;
 			break;
 		case 1:
-			player = new Character(GameObject.Find("Hero"), 3, 2, 1, 1);
-			player.name = "Nancy (KNI)";
+			GameObject kni = (GameObject) GameObject.Instantiate( GameObject.Find("player hero") );
+			kni.transform.position = new Vector3( -4.5f, -1.6f, 0);
+			player = new Character( kni, 3, 2, 1, 1);
+			player.name = "Nick (KNI)";
 			player.isPC = true;
 			break;
 		case 2:
-			player = new Character(GameObject.Find("Hero"), 1, 3, 1, 2);
+			GameObject clr = (GameObject) GameObject.Instantiate( GameObject.Find("player frog") );
+			clr.transform.position = new Vector3( -4.5f, -1.6f, 0);
+			player = new Character( clr, 1, 3, 1, 2);
 			player.name = "Clarence (CLR)";
 			player.isPC = true;
 			break;
-		default:
-			break;
 		}
+		allChars.Add(player);
 
-		switch( bc.level)
+		// level simply relates to how many enemies you are facing at this point
+		for( int i=0; i<bc.level; i+=1)
 		{
-		default:
-			break;
+			GameObject ghost = (GameObject) GameObject.Instantiate(  GameObject.Find("ghost"));
+			ghost.transform.position = new Vector3( 3.4f + (0.8f * (float)(i%2)), (4.8f - -2.5f) / (float) (bc.level+1) * i - 2.5f, 0);  // position the enemy along the right edge
+			Character enemy = new Character( ghost, 2, 2, 1, 2); // make a character with the copy
+			enemy.name = "Ghost " + (i+1);
+			enemy.isPC = false;
+			allChars.Add(enemy);
 		}
-
-		PopulateTestCharacters(); // TODO implement the level and character loading!
 	}
 }
