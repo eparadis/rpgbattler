@@ -23,6 +23,7 @@ public class Sequencing : MonoBehaviour {
 
 		while(!levelEnded)// start a game and run it until the character dies (or they quit or something..)
 		{
+			yield return StartCoroutine( AllCharactersEnterBattle()); // everyone slides in from off screen!
 			yield return StartCoroutine(DoRound ());//   Do a round
 			//   Check if that was the last round
 			if( cm.GetLivingNPCs().Count == 0)	// all the enemies are dead
@@ -271,5 +272,18 @@ public class Sequencing : MonoBehaviour {
 		}
 		else yield return StartCoroutine(ch.StruckAnimation()); // show a 'hurt' animation here
 		//yield return StartCoroutine(ch.IdleAnimation() );  // then go back to idle
+	}
+
+	IEnumerator AllCharactersEnterBattle()
+	{
+		// we get a list of all the characters and sort them by who is going first, so that they animate into the battle field in order
+		List<Character> charList = cm.GetAllChars();
+		charList.Sort( delegate( Character x, Character y)
+		              {  return y.stats.AGI.CompareTo( x.stats.AGI); } );		// reverse sort by AGI (DnD style)
+		foreach( Character ch in charList)
+		{
+			yield return StartCoroutine( ch.ReturnHomeAnimation() );
+		}
+
 	}
 }

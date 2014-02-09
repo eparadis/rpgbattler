@@ -111,5 +111,14 @@ public class CharacterManager : MonoBehaviour {
 			enemy.isPC = false;
 			allChars.Add(enemy);
 		}
+
+		// move all the characters off screen so they can animate in; we do this now so we can use the 'return home' animation already written
+		foreach( Character ch in allChars)
+		{
+			if(ch.isPC)
+				ch.gfx.transform.Translate( new Vector3( -3f, 0, 0));
+			else
+				ch.gfx.transform.position = new Vector3( 8f, 0, 0);
+		}
 	}
 }
