@@ -95,7 +95,7 @@ public class CharacterManager : MonoBehaviour {
 			GameObject clr = (GameObject) GameObject.Instantiate( GameObject.Find("player frog") );
 			clr.transform.position = new Vector3( -4.5f, -1.6f, 0);
 			player = new Character( clr, 1, 3, 1, 2);
-			player.name = "Clarence (CLR)";
+			player.name = "Chris (CLR)";
 			player.isPC = true;
 			break;
 		}
