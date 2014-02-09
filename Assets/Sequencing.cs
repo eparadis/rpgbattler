@@ -33,8 +33,7 @@ public class Sequencing : MonoBehaviour {
 				levelEnded = true;
 				bc.level += 1;	// advance to next level!
 				yield return new WaitForSeconds(3f);	// TODO replace with some sort of victory animation
-				// TODO instead of going to the next level, show a character leveling screen, THEN go to the next level
-				Application.LoadLevel ( Application.loadedLevel); // reload the battle scene
+				Application.LoadLevel ( "leveling" ); // after winning, you get to level your character!
 			} else if( cm.GetLivingPCs().Count == 0) // all your characters are dead
 			{
 				guiText.text = "Too bad!\nYou have been\ndefeated.";

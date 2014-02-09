@@ -5,6 +5,7 @@ public class BattleConfig : MonoBehaviour {
 	
 	public int level;	// level is one-based.  the first level is '1'
 	public int playerCharacter;
+	public CharacterStats PCStats;
 	
 	// Use this for initialization; remember that this is called on the start of a level load, even if we're coming in from a previous scene
 	void Start () {
@@ -15,6 +16,7 @@ public class BattleConfig : MonoBehaviour {
 	{
 		level = 5;
 		playerCharacter = 1;
+		PCStats = new CharacterStats(0, 0, 0, 0);
 	}
 
 	static public BattleConfig GetSingleton()

@@ -80,21 +80,21 @@ public class CharacterManager : MonoBehaviour {
 		default:
 			GameObject wiz = (GameObject) GameObject.Instantiate( GameObject.Find("player ghost") );
 			wiz.transform.position = new Vector3( -4.5f, -1.6f, 0);
-			player = new Character( wiz , 3, 1, 1, 2);	// GO str def mag agi
+			player = new Character( wiz , bc.PCStats);
 			player.name = "Wilma (WIZ)";
 			player.isPC = true;
 			break;
 		case 1:
 			GameObject kni = (GameObject) GameObject.Instantiate( GameObject.Find("player hero") );
 			kni.transform.position = new Vector3( -4.5f, -1.6f, 0);
-			player = new Character( kni, 3, 2, 1, 1);
+			player = new Character( kni, bc.PCStats);
 			player.name = "Nick (KNI)";
 			player.isPC = true;
 			break;
 		case 2:
 			GameObject clr = (GameObject) GameObject.Instantiate( GameObject.Find("player frog") );
 			clr.transform.position = new Vector3( -4.5f, -1.6f, 0);
-			player = new Character( clr, 1, 3, 1, 2);
+			player = new Character( clr, bc.PCStats);
 			player.name = "Chris\t (CLR)";
 			player.isPC = true;
 			break;

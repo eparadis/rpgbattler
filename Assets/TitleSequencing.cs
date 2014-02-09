@@ -41,8 +41,22 @@ public class TitleSequencing : MonoBehaviour {
 			BattleConfig bc = BattleConfig.GetSingleton();
 			bc.playerCharacter = selectedCharacter;
 			bc.level = selectedLevel + 1;
+			switch( selectedCharacter)
+			{
+			case 0:
+			default:
+				bc.PCStats = new CharacterStats(3, 1, 1, 2);	// WIZ
+				break;
+			case 1:
+				bc.PCStats = new CharacterStats(3, 2, 1, 1); // KNI
+				break;
+			case 2:
+				bc.PCStats = new CharacterStats(1, 3, 1, 2); // CLR
+				break;
+			}
 
-			Application.LoadLevel("battle"); // switch to battle scene, which will use battleConfig to populate the monsters and stuff
+			Application.LoadLevel ("leveling"); // allow player to customize their character right off
+			//Application.LoadLevel("battle"); // switch to battle scene, which will use battleConfig to populate the monsters and stuff
 		}
 	}
 

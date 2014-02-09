@@ -34,6 +34,17 @@ public class Character { //: MonoBehaviour {
 		homePos = gfx.transform.position;
 	}
 
+	public Character( GameObject graphic, CharacterStats cs)
+	{
+		name = "No Name";
+		stats = cs;
+		isPC = false;
+		isDead = false;
+		isDefending = false;
+		gfx = graphic;
+		homePos = gfx.transform.position;
+	}
+
 	// not sure if this should return something
 	public string PhysicalAttack( Character target)
 	{
