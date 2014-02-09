@@ -103,13 +103,11 @@ public class Character { //: MonoBehaviour {
 
 	public IEnumerator DeathAnimation()
 	{
-		// TODO the overall length, rotation amount per frame, and delay per frame calcs here are ALL WRONG >:O
-		float speed = 2f;
-		do {
-			//Debug.Log( gfx.transform.localEulerAngles.z );
-			gfx.transform.Rotate(0, 0, speed);
-			yield return null; //new WaitForSeconds( (speed / 90f) * 0.5f );	// 0.5 seconds long 
-		} while( gfx.transform.localEulerAngles.z <= 90f);
+		Animator an = gfx.GetComponent<Animator>();
+		if(an != null)
+		{
+			an.SetBool("isDead", true);
+		}
 		yield return null;
 	}
 
