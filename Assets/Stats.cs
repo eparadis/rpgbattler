@@ -14,7 +14,7 @@ public class CharacterStats {
 
 	public int CalcMaxHP()
 	{
-		return (DEF + STR) / 2  + 5;
+		return (DEF + STR) / 2  + 1;
 	}
 
 	int CalcLvl()
