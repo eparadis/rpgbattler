@@ -120,36 +120,9 @@ public class Sequencing : MonoBehaviour {
 	{
 		Character targetCharacter;
 		string result;
-		//int menuSize = 4;
 		string[] menu = { "Attack", "Defend", "M.Attack", "M.Heal" };
 		yield return StartCoroutine( GenericSelectionMenu( "--" + ch.name + "--", menu));
 		int actionSelection = genericMenuSelection;
-/*		// loop grabbing UP and DOWN keys until RETURN is pressed
-		while( !Input.GetKeyDown(KeyCode.Return) ) 
-		{
-			// draw the menu with a selector arrow on the current option
-			string menuText = "--" + ch.name + "--";
-			for(int i=0; i<menuSize; i+=1)
-			{
-				if(actionSelection == i)
-					menuText += "\n> ";
-				else 
-					menuText += "\n   ";
-				menuText += menu[i];
-			}
-			guiText.text = menuText;
-
-			// move arrow if UP/DOWN key pressed
-			if( Input.GetKeyDown(KeyCode.UpArrow) )
-			{
-				actionSelection -= 1;
-				if( actionSelection < 0)
-					actionSelection = menuSize - 1;
-			}
-			if( Input.GetKeyDown(KeyCode.DownArrow) )
-				actionSelection = (actionSelection + 1) % menuSize;
-			yield return null;
-		} */
 
 		// wait for a single frame so that we get another Input event (so we don't immediately select in the next section)
 		yield return new WaitForEndOfFrame();
@@ -165,7 +138,7 @@ public class Sequencing : MonoBehaviour {
 			string[] names = new string[enemiesChars.Count];
 			for(int i=0; i<enemiesChars.Count; i+=1)
 				names[i] = enemiesChars[i].name;
-			yield return StartCoroutine( GenericSelectionMenu( "Choose target", names));
+			yield return StartCoroutine( GenericSelectionMenu( "Choose target:", names));
 			targetCharacter = enemiesChars[genericMenuSelection];
 			// now do the thing
 			if( actionSelection == 0)
@@ -179,7 +152,6 @@ public class Sequencing : MonoBehaviour {
 				yield return StartCoroutine(ch.ReturnHomeAnimation());
 
 			} else {
-				//ch.MagicAttack( targetCharacter);	// though i guess you'll have to select a spell to attack with
 				result = ch.CastAttack( targetCharacter);
 				yield return StartCoroutine(ShowPlayerActionLabel( ch, "Magic attack " + result));
 				yield return StartCoroutine(ch.CastAnimation() );

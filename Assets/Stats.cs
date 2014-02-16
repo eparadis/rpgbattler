@@ -12,7 +12,7 @@ public class CharacterStats {
 	public int MAG;
 	public int AGI;
 
-	int CalcMaxHP()
+	public int CalcMaxHP()
 	{
 		return (DEF + STR) / 2  + 5;
 	}

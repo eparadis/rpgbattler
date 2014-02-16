@@ -29,10 +29,10 @@ public class LevelAdvanceSequencing : MonoBehaviour {
 				Application.LoadLevel( "battle");
 
 			string[] menuChoices = {
-				"STR " + bc.PCStats.STR + " + 1 = " + (bc.PCStats.STR+1),
-				"DEF " + bc.PCStats.DEF + " + 1 = " + (bc.PCStats.DEF+1),
-				"MAG " + bc.PCStats.MAG + " + 1 = " + (bc.PCStats.MAG+1),
-				"AGI " + bc.PCStats.AGI + " + 1 = " + (bc.PCStats.AGI+1) };
+				"STR " + bc.PCStats.STR ,
+				"DEF " + bc.PCStats.DEF ,
+				"MAG " + bc.PCStats.MAG ,
+				"AGI " + bc.PCStats.AGI  };
 			yield return StartCoroutine( GenericSelectionMenu( "What stat do you want to\nlevel? You have " + statPointsRemaining + " stat\npoints remaning.", menuChoices));
 			int selectedStat = genericMenuSelection;
 
@@ -54,16 +54,36 @@ public class LevelAdvanceSequencing : MonoBehaviour {
 
 			statPointsRemaining -= 1;
 
+			bc.PCStats.maxHP = bc.PCStats.CalcMaxHP();
+			bc.PCStats.HP = bc.PCStats.maxHP;
+
 			// we need to have a Character with an assigned gfx to be able to call Character.AttactSparklies( Color.yellow) or something
-			yield return new WaitForSeconds( 0.5f);  // TODO play levelling up animation
+			yield return StartCoroutine( AttractSparklies( Color.yellow ));
 		}
 	}
 
+	// largely copied from Character.cs
+	IEnumerator AttractSparklies(Color c)
+	{
+		ParticleSystem ps = player.GetComponent<ParticleSystem>();
+		if( ps != null)
+		{
+			ps.startColor = c;
+			ps.startSpeed = -2; // inwards
+			ps.Play();
+			yield return new WaitForSeconds( 1f);
+			ps.Stop();
+			ps.Clear();
+		}
+		
+		yield return null;
+	}
+
 	// copied from Sequencing.cs
-	int genericMenuSelection;
+	int genericMenuSelection = 0;
 	IEnumerator GenericSelectionMenu( string title, string[] options)
 	{
-		genericMenuSelection = 0;
+		//genericMenuSelection = 0;	// don't reset the position because its confusing when its the same menu several times
 		int menuSize = options.Length;
 		while( !Input.GetKeyDown(KeyCode.Return) ) 
 		{

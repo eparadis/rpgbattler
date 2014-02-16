@@ -82,9 +82,10 @@ public class TitleSequencing : MonoBehaviour {
 	// copied from Sequencing.cs
 	IEnumerator ShowTitleUntilExit()
 	{
-		guiText.text = "RPG Battler\nby Ed P\nPress SPACEBAR to start";
-		while( !Input.GetKeyDown(KeyCode.Space) )
+		guiText.text = "RPG Battler\nby Ed P\nPress any key to start";
+		while( !Input.anyKeyDown )
 			yield return null;
+		yield return new WaitForEndOfFrame();
 	}
 
 	// copied from Sequencing.cs

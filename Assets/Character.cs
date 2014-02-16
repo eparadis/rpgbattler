@@ -53,9 +53,10 @@ public class Character { //: MonoBehaviour {
 		{
 			if( stats.STR > target.stats.DEF*2)
 			{
-				target.stats.HP -= stats.STR - target.stats.DEF;
-				Debug.Log(string.Format("{0} does {1} damage to {2}",name, 1, target.name));
-				return string.Format ("-1 ({0})", target.stats.HP);
+				int dmg = stats.STR - target.stats.DEF;
+				target.stats.HP -= dmg;
+				Debug.Log(string.Format("{0} does {1} damage to {2}",name, dmg, target.name));
+				return string.Format ("{0} ({1})", dmg, target.stats.HP);
 			} else
 				return "0";
 		} else {
@@ -63,9 +64,10 @@ public class Character { //: MonoBehaviour {
 			if( stats.STR > target.stats.DEF )
 			{
 				// apply damage
-				target.stats.HP -= stats.STR - target.stats.DEF;
-				Debug.Log(string.Format("{0} does {1} damage to {2}",name, 1, target.name));
-				return string.Format ("-1 ({0})", target.stats.HP);
+				int dmg = stats.STR - target.stats.DEF;
+				target.stats.HP -= dmg;
+				Debug.Log(string.Format("{0} does {1} damage to {2}",name, dmg, target.name));
+				return string.Format ("{0} ({1})", -dmg, target.stats.HP);
 			} else
 				return "0";
 		}
@@ -78,14 +80,15 @@ public class Character { //: MonoBehaviour {
 		if( target.stats.HP > target.stats.maxHP)
 			target.stats.HP = target.stats.maxHP;
 		Debug.Log(string.Format("{0} heals {1} HP to {2}",name, healAmt, target.name));
-		return string.Format ("+1 ({0})", target.stats.HP);
+		return string.Format ("+{0} ({1})", healAmt, target.stats.HP);
 	}
 
 	public string CastAttack( Character target)
 	{
-		int dmg = Random.Range( stats.MAG+stats.AGI, (stats.MAG+stats.AGI)*2);
+		int dmg = Random.Range( (stats.MAG+stats.AGI) / 4, (stats.MAG+stats.AGI)/2);
 		if(target.isDefending)
 			dmg /= 2;
+		if( dmg == 0) dmg = 1;	// at least a point of damage
 		target.stats.HP -= dmg;
 		Debug.Log(string.Format ("{0} does {1} damage to {2}", name, dmg, target.name));
 		return string.Format ( "{0} ({1})", -dmg, target.stats.HP);
