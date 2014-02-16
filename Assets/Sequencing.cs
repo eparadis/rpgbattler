@@ -7,11 +7,15 @@ public class Sequencing : MonoBehaviour {
 	bool levelEnded;
 	CharacterManager cm;
 	BattleConfig bc;
+	SfxManager sfx;
+	public AudioClip menuSelect;
+	public AudioClip menuAccept;
 
 	// Use this for initialization
 	void Start () {
 		cm = GetComponent<CharacterManager>();
 		bc = BattleConfig.GetSingleton();
+		sfx = SfxManager.GetSingleton();
 		StartCoroutine( "OuterLoop");
 	}
 
@@ -116,10 +120,11 @@ public class Sequencing : MonoBehaviour {
 	{
 		Character targetCharacter;
 		string result;
-		int actionSelection = 0;
-		int menuSize = 4;
+		//int menuSize = 4;
 		string[] menu = { "Attack", "Defend", "M.Attack", "M.Heal" };
-		// loop grabbing UP and DOWN keys until RETURN is pressed
+		yield return StartCoroutine( GenericSelectionMenu( "--" + ch.name + "--", menu));
+		int actionSelection = genericMenuSelection;
+/*		// loop grabbing UP and DOWN keys until RETURN is pressed
 		while( !Input.GetKeyDown(KeyCode.Return) ) 
 		{
 			// draw the menu with a selector arrow on the current option
@@ -144,7 +149,7 @@ public class Sequencing : MonoBehaviour {
 			if( Input.GetKeyDown(KeyCode.DownArrow) )
 				actionSelection = (actionSelection + 1) % menuSize;
 			yield return null;
-		}
+		} */
 
 		// wait for a single frame so that we get another Input event (so we don't immediately select in the next section)
 		yield return new WaitForEndOfFrame();
@@ -236,14 +241,19 @@ public class Sequencing : MonoBehaviour {
 			// move arrow if UP/DOWN key pressed
 			if( Input.GetKeyDown(KeyCode.UpArrow) )
 			{
+				sfx.Play( menuSelect);
 				genericMenuSelection -= 1;
 				if( genericMenuSelection < 0)
 					genericMenuSelection = menuSize - 1;
 			}
 			if( Input.GetKeyDown(KeyCode.DownArrow) )
+			{
+				sfx.Play( menuSelect);
 				genericMenuSelection = (genericMenuSelection + 1) % menuSize;
+			}
 			yield return null;
 		}
+		sfx.Play( menuAccept);
 		Debug.Log("Generic menu selection = " + genericMenuSelection);
 	}
 

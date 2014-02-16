@@ -14,7 +14,7 @@ public class BattleConfig : MonoBehaviour {
 
 	public void SetDefaults()
 	{
-		level = 5;
+		level = 1;
 		playerCharacter = 1;
 		PCStats = new CharacterStats(0, 0, 0, 0);
 	}

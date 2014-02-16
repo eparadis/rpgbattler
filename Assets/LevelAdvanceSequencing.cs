@@ -6,9 +6,13 @@ public class LevelAdvanceSequencing : MonoBehaviour {
 	BattleConfig bc;
 	public GameObject[] characterIcons;
 	private GameObject player;
+	SfxManager sfx;
+	public AudioClip menuSelect;
+	public AudioClip menuAccept;
 
 	// Use this for initialization
 	void Start () {
+		sfx = SfxManager.GetSingleton();
 		bc = BattleConfig.GetSingleton();
 		player = characterIcons[bc.playerCharacter];
 		player.SetActive( true); // show the character we're using
@@ -78,14 +82,19 @@ public class LevelAdvanceSequencing : MonoBehaviour {
 			// move arrow if UP/DOWN key pressed
 			if( Input.GetKeyDown(KeyCode.UpArrow) )
 			{
+				sfx.Play( menuSelect);
 				genericMenuSelection -= 1;
 				if( genericMenuSelection < 0)
 					genericMenuSelection = menuSize - 1;
 			}
 			if( Input.GetKeyDown(KeyCode.DownArrow) )
+			{
+				sfx.Play( menuSelect);
 				genericMenuSelection = (genericMenuSelection + 1) % menuSize;
+			}
 			yield return null;
 		}
+		sfx.Play( menuAccept);
 		Debug.Log("Generic menu selection = " + genericMenuSelection);
 	}
 }

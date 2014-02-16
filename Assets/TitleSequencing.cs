@@ -5,10 +5,13 @@ public class TitleSequencing : MonoBehaviour {
 
 	public GameObject[] characterIcons;
 	public AudioClip backgroundMusic;
-
+	public AudioClip menuSelect;
+	public AudioClip menuAccept;
+	SfxManager sfx;
 
 	// Use this for initialization
 	void Start () {
+		sfx = SfxManager.GetSingleton();
 		StartCoroutine( "OuterLoop");
 	}
 	
@@ -37,14 +40,14 @@ public class TitleSequencing : MonoBehaviour {
 
 			HideCharacterIcons();
 
-			string[] levelChoices = {"Level 1", "Level 2", "Level 3", "Level 4", "Level 5"};
-			yield return StartCoroutine( GenericSelectionMenu( "Select a battle:", levelChoices));
+			string[] levelChoices = {"Easy", "Normal", "Hard"};
+			yield return StartCoroutine( GenericSelectionMenu( "Select a difficulty:", levelChoices));
 			int selectedLevel = genericMenuSelection;
 
 			// create a 'battle configuration' object with the selected character and level
 			BattleConfig bc = BattleConfig.GetSingleton();
 			bc.playerCharacter = selectedCharacter;
-			bc.level = selectedLevel + 1;
+			bc.level = (selectedLevel * 2) + 1;
 			switch( selectedCharacter)
 			{
 			case 0:
@@ -107,14 +110,19 @@ public class TitleSequencing : MonoBehaviour {
 			// move arrow if UP/DOWN key pressed
 			if( Input.GetKeyDown(KeyCode.UpArrow) )
 			{
+				sfx.Play(menuSelect);
 				genericMenuSelection -= 1;
 				if( genericMenuSelection < 0)
 					genericMenuSelection = menuSize - 1;
 			}
 			if( Input.GetKeyDown(KeyCode.DownArrow) )
+			{
+				sfx.Play(menuSelect);
 				genericMenuSelection = (genericMenuSelection + 1) % menuSize;
+			}
 			yield return null;
 		}
+		sfx.Play(menuAccept);
 		Debug.Log("Generic menu selection = " + genericMenuSelection);
 	}
 }

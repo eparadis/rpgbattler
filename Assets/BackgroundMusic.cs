@@ -35,6 +35,7 @@ public class BackgroundMusic : MonoBehaviour {
 			AudioSource source = go.AddComponent<AudioSource>();
 			source.playOnAwake = false;
 			source.loop = true;
+			source.volume = 0.25f;
 
 			//bm.SetDefaults();
 			return bm;
