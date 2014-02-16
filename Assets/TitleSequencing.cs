@@ -45,13 +45,13 @@ public class TitleSequencing : MonoBehaviour {
 			{
 			case 0:
 			default:
-				bc.PCStats = new CharacterStats(3, 1, 1, 2);	// WIZ
+				bc.PCStats = new CharacterStats(0, 0, 1, 1);	// WIZ	str def mag agi
 				break;
 			case 1:
-				bc.PCStats = new CharacterStats(3, 2, 1, 1); // KNI
+				bc.PCStats = new CharacterStats(1, 1, 0, 0); // KNI
 				break;
 			case 2:
-				bc.PCStats = new CharacterStats(1, 3, 1, 2); // CLR
+				bc.PCStats = new CharacterStats(0, 1, 1, 0); // CLR
 				break;
 			}
 

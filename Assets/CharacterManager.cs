@@ -106,7 +106,7 @@ public class CharacterManager : MonoBehaviour {
 		{
 			GameObject ghost = (GameObject) GameObject.Instantiate(  GameObject.Find("ghost"));
 			ghost.transform.position = new Vector3( 3.0f + (2.3f * (float)(i%2)), (4.8f - -2.5f) / (float) (bc.level+1) * i - 2.5f, 0);  // position the enemy along the right edge
-			Character enemy = new Character( ghost, 2, 2, 1, 2); // make a character with the copy
+			Character enemy = new Character( ghost, 2+bc.level, 2+bc.level, 1+bc.level, 2+bc.level); // make a character with the copy
 			enemy.name = "Ghost " + (i+1);
 			enemy.isPC = false;
 			allChars.Add(enemy);

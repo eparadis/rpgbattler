@@ -53,7 +53,7 @@ public class Character { //: MonoBehaviour {
 		{
 			if( stats.STR > target.stats.DEF*2)
 			{
-				target.stats.HP -= 1; // TODO need to rething how physical attacks work in regards to defending
+				target.stats.HP -= stats.STR - target.stats.DEF;
 				Debug.Log(string.Format("{0} does {1} damage to {2}",name, 1, target.name));
 				return string.Format ("-1 ({0})", target.stats.HP);
 			} else
@@ -63,7 +63,7 @@ public class Character { //: MonoBehaviour {
 			if( stats.STR > target.stats.DEF )
 			{
 				// apply damage
-				target.stats.HP -= 1; // TODO how much damage do we do?
+				target.stats.HP -= stats.STR - target.stats.DEF;
 				Debug.Log(string.Format("{0} does {1} damage to {2}",name, 1, target.name));
 				return string.Format ("-1 ({0})", target.stats.HP);
 			} else
@@ -73,7 +73,7 @@ public class Character { //: MonoBehaviour {
 
 	public string CastHeal( Character target)
 	{
-		int healAmt = stats.MAG;	// figure out how much healing is going to happen
+		int healAmt = (stats.DEF + stats.MAG) / 2;
 		target.stats.HP += healAmt;	// apply to target
 		if( target.stats.HP > target.stats.maxHP)
 			target.stats.HP = target.stats.maxHP;
@@ -85,7 +85,7 @@ public class Character { //: MonoBehaviour {
 	{
 		int dmg = Random.Range( stats.MAG+stats.AGI, (stats.MAG+stats.AGI)*2);
 		if(target.isDefending)
-			dmg /= 2;	// TODO how does defending affect magical attacks?
+			dmg /= 2;
 		target.stats.HP -= dmg;
 		Debug.Log(string.Format ("{0} does {1} damage to {2}", name, dmg, target.name));
 		return string.Format ( "{0} ({1})", -dmg, target.stats.HP);

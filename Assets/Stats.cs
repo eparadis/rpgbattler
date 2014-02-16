@@ -1,6 +1,5 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
-
 
 public class CharacterStats {
 	public int HP;
