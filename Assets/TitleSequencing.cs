@@ -4,6 +4,7 @@ using System.Collections;
 public class TitleSequencing : MonoBehaviour {
 
 	public GameObject[] characterIcons;
+	public AudioClip backgroundMusic;
 
 
 	// Use this for initialization
@@ -16,6 +17,9 @@ public class TitleSequencing : MonoBehaviour {
 		while(true)  // keep the game running forever ( i guess we use Application.Exit() to quit sometime in the future)
 		{
 			HideCharacterIcons();
+
+			BackgroundMusic bm = BackgroundMusic.GetSingleton();
+			bm.Play( backgroundMusic);
 
 			yield return StartCoroutine(ShowTitleUntilExit());	// show a title screen until the title screen is exited
 
