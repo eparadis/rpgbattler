@@ -85,6 +85,7 @@ public class TitleSequencing : MonoBehaviour {
 		guiText.text = "RPG Battler\nby Ed P\nPress any key to start";
 		while( !Input.anyKeyDown )
 			yield return null;
+		sfx.Play( menuAccept);
 		yield return new WaitForEndOfFrame();
 	}
 

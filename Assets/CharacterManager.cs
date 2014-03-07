@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public class CharacterManager : MonoBehaviour {
 
+	public AudioClip genericAttackSfx, genericDefendSfx, genericMagAttackSfx, genericHealSfx, genericBattleEnterSfx, genericDeathSfx;
+
 	List<Character> allChars;
 
 	public List<Character> GetAllChars()
@@ -67,6 +69,16 @@ public class CharacterManager : MonoBehaviour {
 		allChars.Add ( enemyB);
 	}
 
+	private void SetGenericSfx( Character c)
+	{
+		c.attackSfx = genericAttackSfx;
+		c.battleEnterSfx = genericBattleEnterSfx;
+		c.deathSfx = genericDeathSfx;
+		c.defendSfx = genericDefendSfx;
+		c.healSfx = genericHealSfx;
+		c.magAttackSfx = genericMagAttackSfx;
+	}
+
 	public void PopulateCharacters()
 	{
 		BattleConfig bc = BattleConfig.GetSingleton();
@@ -83,6 +95,7 @@ public class CharacterManager : MonoBehaviour {
 			player = new Character( wiz , bc.PCStats);
 			player.name = "Wilma (WIZ)";
 			player.isPC = true;
+			SetGenericSfx(player);
 			break;
 		case 1:
 			GameObject kni = (GameObject) GameObject.Instantiate( GameObject.Find("player hero") );
@@ -90,6 +103,7 @@ public class CharacterManager : MonoBehaviour {
 			player = new Character( kni, bc.PCStats);
 			player.name = "Nick (KNI)";
 			player.isPC = true;
+			SetGenericSfx(player);
 			break;
 		case 2:
 			GameObject clr = (GameObject) GameObject.Instantiate( GameObject.Find("player frog") );
@@ -97,6 +111,7 @@ public class CharacterManager : MonoBehaviour {
 			player = new Character( clr, bc.PCStats);
 			player.name = "Chris\t (CLR)";
 			player.isPC = true;
+			SetGenericSfx(player);
 			break;
 		}
 		allChars.Add(player);
@@ -109,6 +124,7 @@ public class CharacterManager : MonoBehaviour {
 			Character enemy = new Character( ghost, bc.level, bc.level, bc.level, bc.level); // make a character with the copy
 			enemy.name = "Ghost " + (i+1);
 			enemy.isPC = false;
+			SetGenericSfx(enemy);
 			allChars.Add(enemy);
 		}
 

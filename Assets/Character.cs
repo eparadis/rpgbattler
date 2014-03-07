@@ -11,6 +11,7 @@ public class Character { //: MonoBehaviour {
 	public GameObject gfx;
 	Vector3 homePos;
 	public bool isDefending;
+	public AudioClip attackSfx, defendSfx, magAttackSfx, healSfx, battleEnterSfx, deathSfx;
 
 	public Character( GameObject graphic)
 	{
