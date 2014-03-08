@@ -14,6 +14,31 @@ public class CharacterManager : MonoBehaviour {
 		return allChars;
 	}
 
+	public void SortCharactersByAGI()
+	{
+		// check if allChars is already sorted. we don't want to re-sort it and change the established order (ie: only sort when we really need to)
+
+		// if its not sorted, do our special sort that only reorders the elements that aren't in order (again to perserve over all order as much as logicall possible)
+
+		// TODO: don't simply use the default sorting method
+		allChars.Sort( delegate( Character x, Character y)
+		      {  return y.stats.AGI.CompareTo( x.stats.AGI); } );		// reverse sort by AGI (DnD style)
+	}
+
+	private void OrderPreservingSortByAGI()
+	{
+		// step through the list until something is out of order
+
+		//   remove it
+
+		//   put it back...?
+	}
+
+	private bool CharListIsSorted()
+	{
+		return true;
+	}
+	
 	public List<Character> GetLivingNPCs()
 	{
 		return allChars.FindAll ( delegate( Character z)
