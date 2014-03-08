@@ -24,10 +24,10 @@ public class Sequencing : MonoBehaviour {
 	{
 		levelEnded = false;
 		cm.PopulateCharacters();	// load the PC and NPCs
+		yield return StartCoroutine( AllCharactersEnterBattle()); // everyone slides in from off screen!
 
 		while(!levelEnded)// start a game and run it until the character dies (or they quit or something..)
 		{
-			yield return StartCoroutine( AllCharactersEnterBattle()); // everyone slides in from off screen!
 			yield return StartCoroutine(DoRound ());//   Do a round
 			//   Check if that was the last round
 			if( cm.GetLivingNPCs().Count == 0)	// all the enemies are dead
@@ -232,7 +232,7 @@ public class Sequencing : MonoBehaviour {
 			yield return null;
 		}
 		sfx.Play( menuAccept);
-		Debug.Log("Generic menu selection = " + genericMenuSelection);
+		//Debug.Log("Generic menu selection = " + genericMenuSelection);
 	}
 
 	IEnumerator ShowEnemyActionLabel( Character ch, string action)
@@ -264,6 +264,7 @@ public class Sequencing : MonoBehaviour {
 
 	IEnumerator AllCharactersEnterBattle()
 	{
+		//Debug.Log("XXXXX all chars enter battle called");
 		// we get a list of all the characters and sort them by who is going first, so that they animate into the battle field in order
 		List<Character> charList = cm.GetAllChars();
 		charList.Sort( delegate( Character x, Character y)
@@ -273,6 +274,5 @@ public class Sequencing : MonoBehaviour {
 			sfx.Play (ch.battleEnterSfx);
 			yield return StartCoroutine( ch.ReturnHomeAnimation() );
 		}
-
 	}
 }

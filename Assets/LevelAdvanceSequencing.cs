@@ -115,6 +115,6 @@ public class LevelAdvanceSequencing : MonoBehaviour {
 			yield return null;
 		}
 		sfx.Play( menuAccept);
-		Debug.Log("Generic menu selection = " + genericMenuSelection);
+		//Debug.Log("Generic menu selection = " + genericMenuSelection);
 	}
 }

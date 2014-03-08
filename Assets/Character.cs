@@ -167,7 +167,6 @@ public class Character { //: MonoBehaviour {
 			gfx.transform.position = Vector3.Lerp(start, homePos, fracJourney);
 			yield return null;
 		}
-		
 		yield return null;
 	}
 
