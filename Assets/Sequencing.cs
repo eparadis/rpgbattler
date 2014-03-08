@@ -75,10 +75,10 @@ public class Sequencing : MonoBehaviour {
 					if( target == null)
 						continue;	// if there are no living characters, just skip this NPC's turn
 					result = ch.PhysicalAttack( target );	// do a physical attack on the first PC in the list
-					sfx.Play(ch.attackSfx);
 					yield return StartCoroutine(ShowEnemyActionLabel( ch, "Attack " + result));
 					yield return StartCoroutine(ch.IdleAnimation() );
 					yield return StartCoroutine(ch.ApproachTargetAnimation( target));
+					sfx.Play(ch.attackSfx);
 					yield return StartCoroutine(ch.StabAnimation() );
 					yield return StartCoroutine(CheckForDeath(target));
 					yield return StartCoroutine(ch.IdleAnimation() );
@@ -146,10 +146,10 @@ public class Sequencing : MonoBehaviour {
 			if( actionSelection == 0)
 			{
 				result = ch.PhysicalAttack( targetCharacter);
-				sfx.Play(ch.attackSfx);
 				yield return StartCoroutine(ShowPlayerActionLabel( ch, "Attack " + result));
 				yield return StartCoroutine(ch.IdleAnimation());
 				yield return StartCoroutine(ch.ApproachTargetAnimation( targetCharacter));
+				sfx.Play(ch.attackSfx);
 				yield return StartCoroutine(ch.StabAnimation());
 				yield return StartCoroutine(CheckForDeath(targetCharacter));
 				yield return StartCoroutine(ch.ReturnHomeAnimation());
