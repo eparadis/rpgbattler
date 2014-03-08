@@ -58,6 +58,7 @@ public class Sequencing : MonoBehaviour {
 		List<Character> charList = cm.GetAllChars();
 		charList.Sort( delegate( Character x, Character y)
 		              {  return y.stats.AGI.CompareTo( x.stats.AGI); } );		// reverse sort by AGI (DnD style)
+		//Debug.LogWarning( "there are " + charList.Count + " entries in the char list after sorting");
 		foreach( Character ch in charList)
 		{
 			if(ch.isDead)	// skip characters that were killed this round
