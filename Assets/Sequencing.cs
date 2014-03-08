@@ -75,6 +75,7 @@ public class Sequencing : MonoBehaviour {
 					if( target == null)
 						continue;	// if there are no living characters, just skip this NPC's turn
 					result = ch.PhysicalAttack( target );	// do a physical attack on the first PC in the list
+					sfx.Play(ch.attackSfx);
 					yield return StartCoroutine(ShowEnemyActionLabel( ch, "Attack " + result));
 					yield return StartCoroutine(ch.IdleAnimation() );
 					yield return StartCoroutine(ch.ApproachTargetAnimation( target));
@@ -86,6 +87,7 @@ public class Sequencing : MonoBehaviour {
 					Character target = charList.Find ( delegate( Character z)
 					                                  {	return !z.isPC && !z.isDead;	} ) ;
 					result = ch.CastHeal( target);	// cast 'heal' on the first non-PC in the list
+					sfx.Play(ch.healSfx);
 					yield return StartCoroutine(ShowEnemyActionLabel( ch, "Heal " + result));
 					yield return StartCoroutine(ch.CastAnimation());
 					yield return StartCoroutine(ch.ShootSparklies( Color.green ) ); 
@@ -144,6 +146,7 @@ public class Sequencing : MonoBehaviour {
 			if( actionSelection == 0)
 			{
 				result = ch.PhysicalAttack( targetCharacter);
+				sfx.Play(ch.attackSfx);
 				yield return StartCoroutine(ShowPlayerActionLabel( ch, "Attack " + result));
 				yield return StartCoroutine(ch.IdleAnimation());
 				yield return StartCoroutine(ch.ApproachTargetAnimation( targetCharacter));
@@ -153,6 +156,7 @@ public class Sequencing : MonoBehaviour {
 
 			} else {
 				result = ch.CastAttack( targetCharacter);
+				sfx.Play(ch.magAttackSfx);
 				yield return StartCoroutine(ShowPlayerActionLabel( ch, "Magic attack " + result));
 				yield return StartCoroutine(ch.CastAnimation() );
 				yield return StartCoroutine(ch.ShootSparklies( Color.red ) ); 
@@ -176,6 +180,7 @@ public class Sequencing : MonoBehaviour {
 
 			// do the stats effects and animations
 			result = ch.CastHeal( targetCharacter);
+			sfx.Play(ch.healSfx);
 			yield return StartCoroutine(ShowPlayerActionLabel( ch, "Heal " + result));
 			yield return StartCoroutine(ch.CastAnimation());
 			yield return StartCoroutine(ch.ShootSparklies( Color.green ) ); 
@@ -184,6 +189,7 @@ public class Sequencing : MonoBehaviour {
 		} else if( actionSelection == 1)	// defend
 		{
 			result = ch.Defend();
+			sfx.Play( ch.defendSfx);
 			yield return StartCoroutine(ShowPlayerActionLabel( ch, result));
 			yield return StartCoroutine(ch.DefendAnimation());
 		}
@@ -249,6 +255,7 @@ public class Sequencing : MonoBehaviour {
 		{
 			guiText.text = ch.name + " has died!";
 			ch.isDead = true;
+			sfx.Play(ch.deathSfx);
 			yield return StartCoroutine(ch.DeathAnimation()); // show a graphic or animation
 		}
 		else yield return StartCoroutine(ch.StruckAnimation()); // show a 'hurt' animation here
@@ -263,6 +270,7 @@ public class Sequencing : MonoBehaviour {
 		              {  return y.stats.AGI.CompareTo( x.stats.AGI); } );		// reverse sort by AGI (DnD style)
 		foreach( Character ch in charList)
 		{
+			sfx.Play (ch.battleEnterSfx);
 			yield return StartCoroutine( ch.ReturnHomeAnimation() );
 		}
 
