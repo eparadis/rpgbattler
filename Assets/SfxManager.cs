@@ -28,6 +28,7 @@ public class SfxManager : MonoBehaviour {
 			AudioSource source = go.AddComponent<AudioSource>();
 			source.playOnAwake = false;
 			source.loop = false;
+			source.volume = 0.25f;
 			
 			//bm.SetDefaults();
 			return bm;
