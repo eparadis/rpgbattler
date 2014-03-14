@@ -15,7 +15,10 @@ public class Notifier { // : MonoBehaviour {
 		self = ch;
 		guiText = self.gfx.GetComponent<GUIText>();
 		if( guiText == null)
+		{
 			guiText = self.gfx.AddComponent<GUIText>();
+			Debug.Log("notifier created on " + ch.name );
+		}
 
 		guiText.color = Color.red; // set fonts and colors or whatever
 		// TODO set position to the character's graphic somehow
@@ -24,6 +27,7 @@ public class Notifier { // : MonoBehaviour {
 
 	public IEnumerator ShowActionLabel( string action)
 	{
+		Debug.Log ("inside show action label");
 		string text = "--" + self.name + "--\n  " + action;
 		guiText.text = text;
 		// TODO animate the text floating up or something

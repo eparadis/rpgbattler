@@ -66,8 +66,6 @@ public class EnemyBehavior { //: MonoBehaviour {
 	public IEnumerator LegacyHealTurn( List<Character> allChars)
 	{
 		Character target = FindWeakestNPC( allChars);
-		if( target == null )
-			Debug.LogError( "LegacyHealTurn target is null");
 		string resultString = self.CastHeal( target);	// cast 'heal' on the first non-PC in the list
 		self.sfx.PlayOneShot(self.healSfx);
 		yield return self.helper.CoroutineHelper(self.notifier.ShowActionLabel( "Heal " + resultString));
@@ -110,6 +108,8 @@ public class EnemyBehavior { //: MonoBehaviour {
 	{
 		Character target = charList.Find ( delegate( Character z)
 		                                  {     return !z.isPC && !z.isDead;    } ) ;	// TODO this Find is wrong; it just finds the first. not the weakest
+		if( target == null)
+			Debug.LogWarning( "FindWeakestNPC couldn't find a target");
 		return target;
 	}
 
@@ -118,6 +118,8 @@ public class EnemyBehavior { //: MonoBehaviour {
 	{
 		Character target = charList.Find ( delegate( Character z)
 		                                  {     return z.isPC && !z.isDead;    } ) ;	// TODO this Find is wrong; it just finds the first. not the strongest
+		if( target == null)
+			Debug.LogWarning( "FindStrongestPC couldn't find a target");
 		return target;
 	}
 

@@ -78,14 +78,15 @@ public class Character { //: MonoBehaviour {
 	private Helper GetHelper()
 	{
 		Helper ret;
-		if( gfx != null)
+		GameObject go = GameObject.Find("logic");
+		if( go != null)
 		{
-			ret = gfx.GetComponent<Helper>();
+			ret = go.GetComponent<Helper>();
 			if( ret == null)
-				ret = gfx.AddComponent<Helper>();
+				ret = go.AddComponent<Helper>();
 			return ret;
 		} else {
-			Debug.LogWarning("Character could not get or create a Helper because gfx was unset!");
+			Debug.LogWarning("Character could not get or create a Helper because gameobject was unset!");
 			return null;
 		}
 	}

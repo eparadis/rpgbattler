@@ -14,6 +14,7 @@ public class Helper : MonoBehaviour {
 	public IEnumerator CoroutineHelper( IEnumerator z)
 	{
 		Debug.Log("Helper starting a coroutine " + z.ToString() );
+		yield return new WaitForEndOfFrame();
 		yield return StartCoroutine( z);
 	}
 }
