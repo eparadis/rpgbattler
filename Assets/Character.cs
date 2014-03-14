@@ -12,6 +12,10 @@ public class Character { //: MonoBehaviour {
 	Vector3 homePos;
 	public bool isDefending;
 	public AudioClip attackSfx, defendSfx, magAttackSfx, healSfx, battleEnterSfx, deathSfx;
+	public EnemyBehavior behavior;
+	public Notifier notifier;
+	public AudioSource sfx;
+	public Helper helper;
 
 	public Character( GameObject graphic)
 	{
@@ -22,6 +26,8 @@ public class Character { //: MonoBehaviour {
 		isDefending = false;
 		gfx = graphic;
 		homePos = gfx.transform.position;
+		sfx = GetSfx();
+		helper = GetHelper();
 	}
 
 	public Character( GameObject graphic, int str, int def, int mag, int agi)
@@ -33,6 +39,8 @@ public class Character { //: MonoBehaviour {
 		isDefending = false;
 		gfx = graphic;
 		homePos = gfx.transform.position;
+		sfx = GetSfx();
+		helper = GetHelper();
 	}
 
 	public Character( GameObject graphic, CharacterStats cs)
@@ -44,6 +52,42 @@ public class Character { //: MonoBehaviour {
 		isDefending = false;
 		gfx = graphic;
 		homePos = gfx.transform.position;
+		sfx = GetSfx();
+		helper = GetHelper();
+	}
+
+	private AudioSource GetSfx()
+	{
+		AudioSource ret;
+		if(gfx != null)
+		{
+			ret = gfx.GetComponent<AudioSource>();
+			if( ret == null)
+				ret = gfx.AddComponent<AudioSource>();
+			ret.loop = false;
+			ret.playOnAwake = false;
+			ret.volume = 0.25f;	//TODO look up sfx volume from some global place
+			// TODO what other things do we need to init here?
+			return ret;
+		} else {
+			Debug.LogWarning("Character could not get or create an AudioSource because its gfx was unset!");
+			return null;
+		}
+	}
+
+	private Helper GetHelper()
+	{
+		Helper ret;
+		if( gfx != null)
+		{
+			ret = gfx.GetComponent<Helper>();
+			if( ret == null)
+				ret = gfx.AddComponent<Helper>();
+			return ret;
+		} else {
+			Debug.LogWarning("Character could not get or create a Helper because gfx was unset!");
+			return null;
+		}
 	}
 
 	// not sure if this should return something
@@ -255,4 +299,6 @@ public class Character { //: MonoBehaviour {
 		}
 		yield return null;
 	}
+
+
 }

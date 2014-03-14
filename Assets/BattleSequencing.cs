@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Sequencing : MonoBehaviour {
+public class BattleSequencing : MonoBehaviour {
 
 	bool levelEnded;
 	CharacterManager cm;
@@ -66,35 +66,14 @@ public class Sequencing : MonoBehaviour {
 
 			if( ch.isPC == false)	// if AI controlled
 			{
-				// ai_mgr.DoBehavior(c, charList); // or i suppose it could do its own CharacterManager.GetChars()
+				//yield return StartCoroutine( ch.behavior.TakeTurn( charList) );	// ask the character to do whatever its behavior is
 
-				string result;
+				// blend of old-style and new-style behavior handling
 				if( Random.Range(0,2) == 0)
-				{
-					Character target = charList.Find ( delegate( Character z)
-					                                  {	return z.isPC && !z.isDead;	} );
-					if( target == null)
-						continue;	// if there are no living characters, just skip this NPC's turn
-					result = ch.PhysicalAttack( target );	// do a physical attack on the first PC in the list
-					yield return StartCoroutine(ShowEnemyActionLabel( ch, "Attack " + result));
-					yield return StartCoroutine(ch.IdleAnimation() );
-					yield return StartCoroutine(ch.ApproachTargetAnimation( target));
-					sfx.Play(ch.attackSfx);
-					yield return StartCoroutine(ch.StabAnimation() );
-					yield return StartCoroutine(CheckForDeath(target));
-					yield return StartCoroutine(ch.IdleAnimation() );
-					yield return StartCoroutine(ch.ReturnHomeAnimation());
-				} else {
-					Character target = charList.Find ( delegate( Character z)
-					                                  {	return !z.isPC && !z.isDead;	} ) ;
-					result = ch.CastHeal( target);	// cast 'heal' on the first non-PC in the list
-					sfx.Play(ch.healSfx);
-					yield return StartCoroutine(ShowEnemyActionLabel( ch, "Heal " + result));
-					yield return StartCoroutine(ch.CastAnimation());
-					yield return StartCoroutine(ch.ShootSparklies( Color.green ) ); 
-					yield return StartCoroutine(target.AttractSparklies( Color.green ) );
-					yield return StartCoroutine(ch.IdleAnimation() );
-				}
+					yield return StartCoroutine( ch.behavior.LegacyPhysAttackTurn( charList) );
+				else
+					yield return StartCoroutine( ch.behavior.LegacyHealTurn( charList) );
+
 			} else {
 				yield return StartCoroutine(ShowPlayerBattleMenu( ch));
 				// hide the menu and show a graphic or animation
@@ -147,25 +126,25 @@ public class Sequencing : MonoBehaviour {
 			if( actionSelection == 0)
 			{
 				result = ch.PhysicalAttack( targetCharacter);
-				yield return StartCoroutine(ShowPlayerActionLabel( ch, "Attack " + result));
+				yield return StartCoroutine(ch.notifier.ShowActionLabel( "Attack " + result));
 				yield return StartCoroutine(ch.IdleAnimation());
 				yield return StartCoroutine(ch.ApproachTargetAnimation( targetCharacter));
 				sfx.Play(ch.attackSfx);
 				yield return StartCoroutine(ch.StabAnimation());
-				yield return StartCoroutine(CheckForDeath(targetCharacter));
+				yield return StartCoroutine(targetCharacter.behavior.CheckForDeath( targetCharacter) );
 				yield return StartCoroutine(ch.ReturnHomeAnimation());
 
 			} else {
 				result = ch.CastAttack( targetCharacter);
 				sfx.Play(ch.magAttackSfx);
-				yield return StartCoroutine(ShowPlayerActionLabel( ch, "Magic attack " + result));
+				yield return StartCoroutine(ch.notifier.ShowActionLabel( "Magic attack " + result));
 				yield return StartCoroutine(ch.CastAnimation() );
 				yield return StartCoroutine(ch.ShootSparklies( Color.red ) ); 
 				yield return StartCoroutine(ch.IdleAnimation() );
 				yield return StartCoroutine( targetCharacter.StruckAnimation() );
 				yield return StartCoroutine(targetCharacter.AttractSparklies( Color.red ) );
 				yield return StartCoroutine( targetCharacter.IdleAnimation() );
-				yield return StartCoroutine(CheckForDeath(targetCharacter));
+				yield return StartCoroutine(targetCharacter.behavior.CheckForDeath( targetCharacter));
 			}
 		} else if( actionSelection == 3)	// heal
 		{
@@ -182,7 +161,7 @@ public class Sequencing : MonoBehaviour {
 			// do the stats effects and animations
 			result = ch.CastHeal( targetCharacter);
 			sfx.Play(ch.healSfx);
-			yield return StartCoroutine(ShowPlayerActionLabel( ch, "Heal " + result));
+			yield return StartCoroutine(ch.notifier.ShowActionLabel( "Heal " + result));
 			yield return StartCoroutine(ch.CastAnimation());
 			yield return StartCoroutine(ch.ShootSparklies( Color.green ) ); 
 			yield return StartCoroutine(targetCharacter.AttractSparklies( Color.green ) );
@@ -191,7 +170,7 @@ public class Sequencing : MonoBehaviour {
 		{
 			result = ch.Defend();
 			sfx.Play( ch.defendSfx);
-			yield return StartCoroutine(ShowPlayerActionLabel( ch, result));
+			yield return StartCoroutine(ch.notifier.ShowActionLabel(result));
 			yield return StartCoroutine(ch.DefendAnimation());
 		}
 
@@ -234,33 +213,6 @@ public class Sequencing : MonoBehaviour {
 		}
 		sfx.Play( menuAccept);
 		//Debug.Log("Generic menu selection = " + genericMenuSelection);
-	}
-
-	IEnumerator ShowEnemyActionLabel( Character ch, string action)
-	{
-		string text = "--" + ch.name + "--\n  " + action;
-		guiText.text = text;
-		yield return null;
-	}
-
-	IEnumerator ShowPlayerActionLabel( Character ch, string action)
-	{
-		string text = "--" + ch.name + "--\n  " + action;
-		guiText.text = text;
-		yield return null;
-	}
-
-	IEnumerator CheckForDeath( Character ch)
-	{
-		if(ch.stats.HP <= 0)
-		{
-			guiText.text = ch.name + " has died!";
-			ch.isDead = true;
-			sfx.Play(ch.deathSfx);
-			yield return StartCoroutine(ch.DeathAnimation()); // show a graphic or animation
-		}
-		else yield return StartCoroutine(ch.StruckAnimation()); // show a 'hurt' animation here
-		//yield return StartCoroutine(ch.IdleAnimation() );  // then go back to idle
 	}
 
 	IEnumerator AllCharactersEnterBattle()

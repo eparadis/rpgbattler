@@ -121,6 +121,8 @@ public class CharacterManager : MonoBehaviour {
 			player.name = "Wilma (WIZ)";
 			player.isPC = true;
 			SetGenericSfx(player);
+			player.notifier = new Notifier( player);
+			player.behavior = new EnemyBehavior( EnemyBehavior.Architype.Player, player);
 			break;
 		case 1:
 			GameObject kni = (GameObject) GameObject.Instantiate( GameObject.Find("player hero") );
@@ -129,6 +131,8 @@ public class CharacterManager : MonoBehaviour {
 			player.name = "Nick (KNI)";
 			player.isPC = true;
 			SetGenericSfx(player);
+			player.notifier = new Notifier( player);
+			player.behavior = new EnemyBehavior( EnemyBehavior.Architype.Player, player);
 			break;
 		case 2:
 			GameObject clr = (GameObject) GameObject.Instantiate( GameObject.Find("player frog") );
@@ -137,6 +141,8 @@ public class CharacterManager : MonoBehaviour {
 			player.name = "Chris\t (CLR)";
 			player.isPC = true;
 			SetGenericSfx(player);
+			player.notifier = new Notifier( player);
+			player.behavior = new EnemyBehavior( EnemyBehavior.Architype.Player, player);	// ok this looks goofy
 			break;
 		}
 		allChars.Add(player);
@@ -150,6 +156,8 @@ public class CharacterManager : MonoBehaviour {
 			enemy.name = "Ghost " + (i+1);
 			enemy.isPC = false;
 			SetGenericSfx(enemy);
+			enemy.behavior = new EnemyBehavior( EnemyBehavior.Architype.Mage, enemy);
+			enemy.notifier = new Notifier( enemy);
 			allChars.Add(enemy);
 		}
 
