@@ -131,7 +131,7 @@ public class BattleSequencing : MonoBehaviour {
 				yield return StartCoroutine(ch.ApproachTargetAnimation( targetCharacter));
 				sfx.Play(ch.attackSfx);
 				yield return StartCoroutine(ch.StabAnimation());
-				yield return StartCoroutine(targetCharacter.behavior.CheckForDeath( targetCharacter) );
+				yield return StartCoroutine(targetCharacter.CheckForDeath() );
 				yield return StartCoroutine(ch.ReturnHomeAnimation());
 
 			} else {
@@ -144,7 +144,7 @@ public class BattleSequencing : MonoBehaviour {
 				yield return StartCoroutine( targetCharacter.StruckAnimation() );
 				yield return StartCoroutine(targetCharacter.AttractSparklies( Color.red ) );
 				yield return StartCoroutine( targetCharacter.IdleAnimation() );
-				yield return StartCoroutine(targetCharacter.behavior.CheckForDeath( targetCharacter));
+				yield return StartCoroutine(targetCharacter.CheckForDeath());
 			}
 		} else if( actionSelection == 3)	// heal
 		{

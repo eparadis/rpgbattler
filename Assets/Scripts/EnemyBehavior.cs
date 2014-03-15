@@ -29,6 +29,8 @@ public class EnemyBehavior { //: MonoBehaviour {
 		case Architype.Mage:
 
 			break;
+		case Architype.Healer:
+			break;
 		default:
 			break;
 		}
@@ -57,7 +59,7 @@ public class EnemyBehavior { //: MonoBehaviour {
 			self.sfx.PlayOneShot(self.attackSfx); 
 
 			yield return self.helper.StartCoroutine(self.StabAnimation() );
-			yield return self.helper.StartCoroutine(target.behavior.CheckForDeath( target) );
+			yield return self.helper.StartCoroutine(target.CheckForDeath() );
 			yield return self.helper.StartCoroutine(self.IdleAnimation() );
 			yield return self.helper.StartCoroutine(self.ReturnHomeAnimation());
 		}
@@ -75,30 +77,7 @@ public class EnemyBehavior { //: MonoBehaviour {
 		yield return self.helper.StartCoroutine(self.IdleAnimation() );
 	}
 
-	// this is a little wierd
-	// on one hand, this could be part of Character, as its really only messing with Character stuff - target.CheckForDeath()
-	// on the other hand, i could see how a character's response (maybe casting a last minute save, or running away) would be a 'behavior'
-	//   and this should then go into EnemyBehavior
-	// for example: a minion is CheckForDeath()'d and while not dead, is low enough on HP to quit.  
-	//   This could just as easily be implemented as a 'turn'.  Instead of doing one of the Four Actions, the minion flees or heals or whatever.
-	//   Since the player doesn't get a chance to respond to things, that's probably more fair.
-	// so we'll put it in Character
-	// of course, you can't start coroutines here because Character doesn't derive from MonoBehavior
-	// uuugggggh back it goes into EnemyBehavior
-	
-	public IEnumerator CheckForDeath( Character ch)
-	{
-		if( ch.stats.HP <= 0)
-		{
-			ch.notifier.ShowActionLabel(ch. name + " has died!");
-			ch.isDead = true;
-			ch.sfx.PlayOneShot( ch.deathSfx);
-			yield return self.helper.StartCoroutine( ch.DeathAnimation()); // show a graphic or animation
-		}
-		else 
-			yield return self.helper.StartCoroutine( ch.StruckAnimation()); // show a 'hurt' animation here
-		//yield return StartCoroutine(ch.IdleAnimation() );  // then go back to idle
-	}
+
 
 
 	/* ********** */

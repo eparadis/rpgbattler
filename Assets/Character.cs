@@ -301,5 +301,27 @@ public class Character { //: MonoBehaviour {
 		yield return null;
 	}
 
+	// this is a little wierd
+	// on one hand, this could be part of Character, as its really only messing with Character stuff - target.CheckForDeath()
+	// on the other hand, i could see how a character's response (maybe casting a last minute save, or running away) would be a 'behavior'
+	//   and this should then go into EnemyBehavior
+	// for example: a minion is CheckForDeath()'d and while not dead, is low enough on HP to quit.  
+	//   This could just as easily be implemented as a 'turn'.  Instead of doing one of the Four Actions, the minion flees or heals or whatever.
+	//   Since the player doesn't get a chance to respond to things, that's probably more fair.
+	// so we'll put it in Character
+	
+	public IEnumerator CheckForDeath()
+	{
+		if( stats.HP <= 0)
+		{
+			notifier.ShowActionLabel( name + " has died!");
+			isDead = true;
+			sfx.PlayOneShot( deathSfx);
+			yield return helper.StartCoroutine( DeathAnimation()); // show a graphic or animation
+		}
+		else 
+			yield return helper.StartCoroutine( StruckAnimation()); // show a 'hurt' animation here
+		//yield return StartCoroutine(ch.IdleAnimation() );  // then go back to idle
+	}
 
 }
