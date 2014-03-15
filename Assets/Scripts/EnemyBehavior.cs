@@ -46,9 +46,9 @@ public class EnemyBehavior { //: MonoBehaviour {
 		if( target != null) // if there are no living characters, just skip this NPC's turn
 		{
 			string resultString = self.PhysicalAttack( target );	// do a physical attack on the first PC in the list
-			yield return self.helper.CoroutineHelper( self.notifier.ShowActionLabel( "Attack " + resultString ) );
-			yield return self.helper.CoroutineHelper(self.IdleAnimation() );
-			yield return self.helper.CoroutineHelper(self.ApproachTargetAnimation( target));
+			yield return self.helper.StartCoroutine( self.notifier.ShowActionLabel( "Attack " + resultString ) );
+			yield return self.helper.StartCoroutine(self.IdleAnimation() );
+			yield return self.helper.StartCoroutine(self.ApproachTargetAnimation( target));
 
 			// sfx is a game-global singleton; its design is already set; i just need to get a reference to it; only the Sequencing know about it at
 			//   the moment, but all the various Behaviors are going to need to do something about it.
@@ -56,10 +56,10 @@ public class EnemyBehavior { //: MonoBehaviour {
 			// I decided to go with 'the Unity way'.  the existing SfxManager will stick around for doing menu sound FX and other sounds not associated with a Character.
 			self.sfx.PlayOneShot(self.attackSfx); 
 
-			yield return self.helper.CoroutineHelper(self.StabAnimation() );
-			yield return self.helper.CoroutineHelper(target.behavior.CheckForDeath( target) );
-			yield return self.helper.CoroutineHelper(self.IdleAnimation() );
-			yield return self.helper.CoroutineHelper(self.ReturnHomeAnimation());
+			yield return self.helper.StartCoroutine(self.StabAnimation() );
+			yield return self.helper.StartCoroutine(target.behavior.CheckForDeath( target) );
+			yield return self.helper.StartCoroutine(self.IdleAnimation() );
+			yield return self.helper.StartCoroutine(self.ReturnHomeAnimation());
 		}
 	}
 
@@ -68,11 +68,11 @@ public class EnemyBehavior { //: MonoBehaviour {
 		Character target = FindWeakestNPC( allChars);
 		string resultString = self.CastHeal( target);	// cast 'heal' on the first non-PC in the list
 		self.sfx.PlayOneShot(self.healSfx);
-		yield return self.helper.CoroutineHelper(self.notifier.ShowActionLabel( "Heal " + resultString));
-		yield return self.helper.CoroutineHelper(self.CastAnimation());
-		yield return self.helper.CoroutineHelper(self.ShootSparklies( Color.green ) ); 
-		yield return self.helper.CoroutineHelper(target.AttractSparklies( Color.green ) );
-		yield return self.helper.CoroutineHelper(self.IdleAnimation() );
+		yield return self.helper.StartCoroutine(self.notifier.ShowActionLabel( "Heal " + resultString));
+		yield return self.helper.StartCoroutine(self.CastAnimation());
+		yield return self.helper.StartCoroutine(self.ShootSparklies( Color.green ) ); 
+		yield return self.helper.StartCoroutine(target.AttractSparklies( Color.green ) );
+		yield return self.helper.StartCoroutine(self.IdleAnimation() );
 	}
 
 	// this is a little wierd
@@ -93,10 +93,10 @@ public class EnemyBehavior { //: MonoBehaviour {
 			ch.notifier.ShowActionLabel(ch. name + " has died!");
 			ch.isDead = true;
 			ch.sfx.PlayOneShot( ch.deathSfx);
-			yield return self.helper.CoroutineHelper( ch.DeathAnimation()); // show a graphic or animation
+			yield return self.helper.StartCoroutine( ch.DeathAnimation()); // show a graphic or animation
 		}
 		else 
-			yield return self.helper.CoroutineHelper( ch.StruckAnimation()); // show a 'hurt' animation here
+			yield return self.helper.StartCoroutine( ch.StruckAnimation()); // show a 'hurt' animation here
 		//yield return StartCoroutine(ch.IdleAnimation() );  // then go back to idle
 	}
 
