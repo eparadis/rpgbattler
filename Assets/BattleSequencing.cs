@@ -57,27 +57,15 @@ public class BattleSequencing : MonoBehaviour {
 	{
 		List<Character> charList = cm.GetAllChars();
 		charList.Sort( delegate( Character x, Character y)
-		              {  return y.stats.AGI.CompareTo( x.stats.AGI); } );		// reverse sort by AGI (DnD style)
-		//Debug.LogWarning( "there are " + charList.Count + " entries in the char list after sorting");
+		              {  return y.stats.AGI.CompareTo( x.stats.AGI); } );	// reverse sort by AGI (DnD style)
 		foreach( Character ch in charList)
 		{
 			if(ch.isDead)	// skip characters that were killed this round
 				continue;
-
-			if( ch.isPC == false)	// if AI controlled
-			{
-				//yield return StartCoroutine( ch.behavior.TakeTurn( charList) );	// ask the character to do whatever its behavior is
-
-				// blend of old-style and new-style behavior handling
-				if( Random.Range(0,2) == 0)
-					yield return StartCoroutine( ch.behavior.LegacyPhysAttackTurn( charList) );
-				else
-					yield return StartCoroutine( ch.behavior.LegacyHealTurn( charList) );
-
-			} else {
+			if( ch.isPC )
 				yield return StartCoroutine(ShowPlayerBattleMenu( ch));
-				// hide the menu and show a graphic or animation
-			}
+			else
+				yield return StartCoroutine(ch.behavior.TakeTurn( charList) );	// ask the NPC character to do whatever its behavior is
 		}
 		//cm.RemoveDead();	// This is technically INTRODUCES a game design question. A character could die and be 
 		// raised INSIDE a single round. He COULD lose his turn that round depending on ordering.

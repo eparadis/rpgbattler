@@ -36,13 +36,29 @@ public class EnemyBehavior { //: MonoBehaviour {
 		}
 	}
 
-	public delegate IEnumerator TakeTurn( List<Character> allChars);
-
-
-	public IEnumerator LegacyPhysAttackTurn( List<Character> allChars )
+	public IEnumerator TakeTurn( List<Character> allChars)
 	{
-		// this is what we're trying to replace
+		switch( QuadRandomPicker( 0.25f, 0.25f, 0.25f, 0.25f) )	// TODO vary these probabilites based on the enemie's architype upon setup
+		{
+		default:
+		case ActionType.Defend:
+			yield return self.helper.StartCoroutine(Defend( allChars));
+			break;
+		case ActionType.Heal:
+			yield return self.helper.StartCoroutine(HealWeakestNPC( allChars));
+			break;
+		case ActionType.MagAttack:
+			yield return self.helper.StartCoroutine(MagAttackStrongestPC( allChars));
+			break;
+		case ActionType.PhysAttack:
+			yield return self.helper.StartCoroutine(PhysAttackStrongestPC( allChars));
+			break;
+		}
 
+	}
+
+	IEnumerator PhysAttackStrongestPC( List<Character> allChars )
+	{
 		Character target = FindStrongestPC( allChars);
 
 		if( target != null) // if there are no living characters, just skip this NPC's turn
@@ -65,7 +81,7 @@ public class EnemyBehavior { //: MonoBehaviour {
 		}
 	}
 
-	public IEnumerator LegacyHealTurn( List<Character> allChars)
+	IEnumerator HealWeakestNPC( List<Character> allChars)
 	{
 		Character target = FindWeakestNPC( allChars);
 		string resultString = self.CastHeal( target);	// cast 'heal' on the first non-PC in the list
@@ -77,8 +93,28 @@ public class EnemyBehavior { //: MonoBehaviour {
 		yield return self.helper.StartCoroutine(self.IdleAnimation() );
 	}
 
+	IEnumerator MagAttackStrongestPC( List<Character> allChars )
+	{
+		Character target = FindStrongestPC( allChars);
+		string resultString = self.CastAttack( target);	// cast 'heal' on the first non-PC in the list
+		self.sfx.PlayOneShot(self.magAttackSfx);
+		yield return self.helper.StartCoroutine(self.notifier.ShowActionLabel( "Magic Attack " + resultString));
+		yield return self.helper.StartCoroutine(self.CastAnimation());
+		yield return self.helper.StartCoroutine(self.ShootSparklies( Color.red ) ); 
+		yield return self.helper.StartCoroutine(self.IdleAnimation() );
+		yield return self.helper.StartCoroutine(target.StruckAnimation() );
+		yield return self.helper.StartCoroutine(target.AttractSparklies( Color.red ) );
+		yield return self.helper.StartCoroutine(target.IdleAnimation() );
+		yield return self.helper.StartCoroutine(target.CheckForDeath());
+	}
 
-
+	IEnumerator Defend( List<Character> allChars )	// this parameter is not used but we pass it... um... i don't know why
+	{
+		string resultString = self.Defend();
+		self.sfx.PlayOneShot( self.defendSfx);
+		yield return self.helper.StartCoroutine(self.notifier.ShowActionLabel(resultString));
+		yield return self.helper.StartCoroutine(self.DefendAnimation());
+	}
 
 	/* ********** */
 
