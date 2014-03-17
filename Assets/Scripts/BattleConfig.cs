@@ -12,11 +12,18 @@ public class BattleConfig : MonoBehaviour {
 		GameObject.DontDestroyOnLoad( gameObject);	// don't allow ourselves to be deleted
 	}
 
-	public void SetDefaults()
+	private void SetDefaults()
 	{
-		level = 1;
-		playerCharacter = 1;
-		PCStats = new CharacterStats(0, 0, 0, 0);
+		if( Application.isEditor)	// if we're getting this from inside the editor, chances are we're play testing and just want some values here
+		{
+			level = 2;	// number of badguys
+			playerCharacter = 1;
+			PCStats = new CharacterStats( 2, 2, 2, 2);
+		} else {
+			level = 1;
+			playerCharacter = 1;
+			PCStats = new CharacterStats(0, 0, 0, 0);
+		}
 	}
 
 	static public BattleConfig GetSingleton()

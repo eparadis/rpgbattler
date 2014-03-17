@@ -122,7 +122,7 @@ public class CharacterManager : MonoBehaviour {
 			player.isPC = true;
 			SetGenericSfx(player);
 			player.notifier = new Notifier( player);
-			player.behavior = new EnemyBehavior( EnemyBehavior.Architype.Player, player);
+			//player.behavior = new EnemyBehavior( EnemyBehavior.Architype.Player, player);
 			break;
 		case 1:
 			GameObject kni = (GameObject) GameObject.Instantiate( GameObject.Find("player hero") );
@@ -132,7 +132,7 @@ public class CharacterManager : MonoBehaviour {
 			player.isPC = true;
 			SetGenericSfx(player);
 			player.notifier = new Notifier( player);
-			player.behavior = new EnemyBehavior( EnemyBehavior.Architype.Player, player);
+			//player.behavior = new EnemyBehavior( EnemyBehavior.Architype.Player, player);
 			break;
 		case 2:
 			GameObject clr = (GameObject) GameObject.Instantiate( GameObject.Find("player frog") );
@@ -142,7 +142,7 @@ public class CharacterManager : MonoBehaviour {
 			player.isPC = true;
 			SetGenericSfx(player);
 			player.notifier = new Notifier( player);
-			player.behavior = new EnemyBehavior( EnemyBehavior.Architype.Player, player);	// ok this looks goofy
+			//player.behavior = new EnemyBehavior( EnemyBehavior.Architype.Player, player);	// ok this looks goofy
 			break;
 		}
 		allChars.Add(player);
@@ -150,14 +150,27 @@ public class CharacterManager : MonoBehaviour {
 		// level simply relates to how many enemies you are facing at this point
 		for( int i=0; i<bc.level; i+=1)
 		{
-			GameObject ghost = (GameObject) GameObject.Instantiate(  GameObject.Find("ghost"));
-			ghost.transform.position = new Vector3( 3.0f + (2.3f * (float)(i%2)), (4.8f - -2.5f) / (float) (bc.level+1) * i - 2.5f, 0);  // position the enemy along the right edge
-			Character enemy = new Character( ghost, bc.level, bc.level, bc.level, bc.level); // make a character with the copy
-			enemy.name = "Ghost " + (i+1);
-			enemy.isPC = false;
-			SetGenericSfx(enemy);
-			enemy.behavior = new EnemyBehavior( EnemyBehavior.Architype.Mage, enemy);
-			enemy.notifier = new Notifier( enemy);
+			Character enemy;
+			if( i%2 == 0)	// evens are ghost healers
+			{
+				GameObject ghost = (GameObject) GameObject.Instantiate(  GameObject.Find("ghost"));
+				ghost.transform.position = new Vector3( 3.0f + (2.3f * (float)(i%2)), (4.8f - -2.5f) / (float) (bc.level+1) * i - 2.5f, 0);  // position the enemy along the right edge
+				enemy = new Character( ghost, bc.level, bc.level, bc.level, bc.level); // make a character with the copy
+				enemy.name = "Ghost " + (i+1);
+				enemy.isPC = false;
+				SetGenericSfx(enemy);
+				enemy.behavior = new HealerArchitype( enemy); 
+				enemy.notifier = new Notifier( enemy);
+			} else { 	// odds are fighters
+				GameObject ghost = (GameObject) GameObject.Instantiate(  GameObject.Find("frog"));
+				ghost.transform.position = new Vector3( 3.0f + (2.3f * (float)(i%2)), (4.8f - -2.5f) / (float) (bc.level+1) * i - 2.5f, 0);  // position the enemy along the right edge
+				enemy = new Character( ghost, bc.level, bc.level, bc.level, bc.level); // make a character with the copy
+				enemy.name = "Frog " + (i+1);
+				enemy.isPC = false;
+				SetGenericSfx(enemy);
+				enemy.behavior = new SimpleArchitype( enemy, 0.75f, 0.25f, 0, 0);	// a fighter kind of guy 
+				enemy.notifier = new Notifier( enemy);
+			}
 			allChars.Add(enemy);
 		}
 

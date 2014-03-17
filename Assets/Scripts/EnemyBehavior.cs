@@ -2,7 +2,55 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class EnemyBehavior { //: MonoBehaviour {
+public class HealerArchitype : EnemyBehavior {
+
+	public override IEnumerator TakeTurn( List<Character> allChars)
+	{
+		yield return self.helper.StartCoroutine( HealWeakestNPC( allChars));
+	}
+
+	public HealerArchitype( Character ch) : base( ch)	// does EnemyBehavior constructor first
+	{
+		// healer specific stuff here, like if we need to keep track of what we did last turn
+	}
+}
+
+// if you just want to make a quick behavior that isn't named, or is data driven, use this.
+public class SimpleArchitype : EnemyBehavior {
+
+	float physAttackChance, defendChance, magAttackChance, healChance; 
+
+	public override IEnumerator TakeTurn( List<Character> allChars)
+	{
+		switch( QuadRandomPicker( physAttackChance, defendChance, magAttackChance, healChance) )
+		{
+		default:
+		case ActionType.Defend:
+			yield return self.helper.StartCoroutine(Defend( allChars));
+			break;
+		case ActionType.Heal:
+			yield return self.helper.StartCoroutine(HealWeakestNPC( allChars));
+			break;
+		case ActionType.MagAttack:
+			yield return self.helper.StartCoroutine(MagAttackStrongestPC( allChars));
+			break;
+		case ActionType.PhysAttack:
+			yield return self.helper.StartCoroutine(PhysAttackStrongestPC( allChars));
+			break;
+		}
+	}
+
+	public SimpleArchitype( Character ch, float physAttackChance, float defendChance, float magAttackChance, float healChance) : base( ch)
+	{
+		this.physAttackChance = physAttackChance;
+		this.defendChance = defendChance;
+		this.magAttackChance = magAttackChance;
+		this.healChance = healChance;
+	}
+}
+
+
+public abstract class EnemyBehavior { //: MonoBehaviour {
 
 	/* the result of an action will be
 	 * doPhysAttack, target
@@ -19,24 +67,15 @@ public class EnemyBehavior { //: MonoBehaviour {
 		Healer, Mage, Brawler, Minion, Boss, Player
 	};
 
-	private Character self;
+	protected Character self;
 
-	public EnemyBehavior( Architype ar, Character ch )
+	protected EnemyBehavior( Character ch )
 	{
 		self = ch;
-		switch ( ar )
-		{
-		case Architype.Mage:
-
-			break;
-		case Architype.Healer:
-			break;
-		default:
-			break;
-		}
 	}
 
-	public IEnumerator TakeTurn( List<Character> allChars)
+	abstract public IEnumerator TakeTurn( List<Character> allChars);
+	/*public IEnumerator TakeTurn( List<Character> allChars)
 	{
 		switch( QuadRandomPicker( 0.25f, 0.25f, 0.25f, 0.25f) )	// TODO vary these probabilites based on the enemie's architype upon setup
 		{
@@ -54,10 +93,9 @@ public class EnemyBehavior { //: MonoBehaviour {
 			yield return self.helper.StartCoroutine(PhysAttackStrongestPC( allChars));
 			break;
 		}
+	}*/
 
-	}
-
-	IEnumerator PhysAttackStrongestPC( List<Character> allChars )
+	protected IEnumerator PhysAttackStrongestPC( List<Character> allChars )
 	{
 		Character target = FindStrongestPC( allChars);
 
@@ -81,7 +119,7 @@ public class EnemyBehavior { //: MonoBehaviour {
 		}
 	}
 
-	IEnumerator HealWeakestNPC( List<Character> allChars)
+	protected IEnumerator HealWeakestNPC( List<Character> allChars)
 	{
 		Character target = FindWeakestNPC( allChars);
 		string resultString = self.CastHeal( target);	// cast 'heal' on the first non-PC in the list
@@ -93,7 +131,7 @@ public class EnemyBehavior { //: MonoBehaviour {
 		yield return self.helper.StartCoroutine(self.IdleAnimation() );
 	}
 
-	IEnumerator MagAttackStrongestPC( List<Character> allChars )
+	protected IEnumerator MagAttackStrongestPC( List<Character> allChars )
 	{
 		Character target = FindStrongestPC( allChars);
 		string resultString = self.CastAttack( target);	// cast 'heal' on the first non-PC in the list
@@ -108,7 +146,7 @@ public class EnemyBehavior { //: MonoBehaviour {
 		yield return self.helper.StartCoroutine(target.CheckForDeath());
 	}
 
-	IEnumerator Defend( List<Character> allChars )	// this parameter is not used but we pass it... um... i don't know why
+	protected IEnumerator Defend( List<Character> allChars )	// this parameter is not used but we pass it... um... i don't know why
 	{
 		string resultString = self.Defend();
 		self.sfx.PlayOneShot( self.defendSfx);
@@ -191,7 +229,7 @@ public class EnemyBehavior { //: MonoBehaviour {
 		// attacks weakest enemy
 	}
 
-	ActionType QuadRandomPicker( float physAttackChance, float defendChance, float magAttackChance, float healChance)
+	protected ActionType QuadRandomPicker( float physAttackChance, float defendChance, float magAttackChance, float healChance)
 	{
 		// each argument is 0..1, and all should add up to 1
 		if( Mathf.Abs( physAttackChance + defendChance + magAttackChance + healChance - 1f) > .001f)
