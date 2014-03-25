@@ -163,10 +163,10 @@ public class Character { //: MonoBehaviour {
 
 	public IEnumerator DeathAnimation()
 	{
-		Animator an = gfx.GetComponent<Animator>();
-		if(an != null)
+		SpriteAnimator sa = gfx.GetComponent<SpriteAnimator>();
+		if(sa != null)
 		{
-			an.SetBool("isDead", true);
+			sa.Play("die");
 		}
 		yield return null;
 	}
@@ -250,53 +250,50 @@ public class Character { //: MonoBehaviour {
 
 	public IEnumerator CastAnimation()
 	{
-		Animator an = gfx.GetComponent<Animator>();
-		if(an != null)
+		SpriteAnimator sa = gfx.GetComponent<SpriteAnimator>();
+		if(sa != null)
 		{
-			an.SetInteger("Action", 2);
+			sa.Play("cast");
 		}
 		yield return null;
 	}
 
 	public IEnumerator IdleAnimation()
 	{
-		Animator an = gfx.GetComponent<Animator>();
-		if(an != null)
+		SpriteAnimator sa = gfx.GetComponent<SpriteAnimator>();
+		if(sa != null)
 		{
-			an.SetInteger("Action", 0);
+			sa.Play("idle");
 		}
 		yield return null;
 	}
 
 	public IEnumerator DefendAnimation()
 	{
-		Animator an = gfx.GetComponent<Animator>();
-		if(an != null)
+		SpriteAnimator sa = gfx.GetComponent<SpriteAnimator>();
+		if(sa != null)
 		{
-			an.SetInteger("Action", 3);
+			sa.Play("defend");
 		}
 		yield return null;
 	}
 
 	public IEnumerator StabAnimation()
 	{
-		Animator an = gfx.GetComponent<Animator>();
-		if(an != null)
+		SpriteAnimator sa = gfx.GetComponent<SpriteAnimator>();
+		if(sa != null)
 		{
-			//an.SetInteger("Action", 1);
-			an.SetTrigger("doStab");
-			yield return new WaitForSeconds(1f);
+			sa.Play("stab");
 		}
 		yield return null;
 	}
 
 	public IEnumerator StruckAnimation()
 	{
-		Animator an = gfx.GetComponent<Animator>();
-		if(an != null)
+		SpriteAnimator sa = gfx.GetComponent<SpriteAnimator>();
+		if(sa != null)
 		{
-			//an.SetInteger("Action", 4);
-			an.SetTrigger("doStruck");
+			sa.Play("struck");
 		}
 		yield return null;
 	}

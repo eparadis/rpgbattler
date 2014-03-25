@@ -1,0 +1,126 @@
+fileFormatVersion: 2
+guid: c4db1c4237a6c4f82b002a71194b5365
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: 2
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 50
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: shifted000_0
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 597
+        width: 137
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: shifted000_1
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 607
+        width: 140
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: shifted000_2
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 617
+        width: 155
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: shifted000_3
+      rect:
+        serializedVersion: 2
+        x: 808
+        y: 650
+        width: 263
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: shifted000_4
+      rect:
+        serializedVersion: 2
+        x: 1091
+        y: 615
+        width: 173
+        height: 272
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: shifted000_5
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 332
+        width: 128
+        height: 165
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: shifted000_6
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 363
+        width: 226
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: shifted000_7
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 381
+        width: 285
+        height: 112
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: shifted000_8
+      rect:
+        serializedVersion: 2
+        x: 898
+        y: 350
+        width: 117
+        height: 184
+      alignment: 0
+      pivot: {x: 0, y: 0}
+  spritePackingTag: 
+  userData: 
