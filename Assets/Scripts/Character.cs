@@ -317,9 +317,14 @@ public class Character { //: MonoBehaviour {
 			yield return helper.StartCoroutine( DeathAnimation()); // show a graphic or animation
 		}
 		else {
-			yield return helper.StartCoroutine( StruckAnimation()); // show a 'hurt' animation here
-			yield return new WaitForSeconds(1);
-			yield return helper.StartCoroutine( IdleAnimation() );  // then go back to idle
+			if( isDefending) // if the character being attacked is defending, keep them in the defending animation
+				yield return helper.StartCoroutine( DefendAnimation() );
+			else 			 // otherwise, show the 'struck' animation and then return to the normal idle animation
+			{
+				yield return helper.StartCoroutine( StruckAnimation()); // show a 'hurt' animation here
+				yield return new WaitForSeconds(1);
+				yield return helper.StartCoroutine( IdleAnimation() );  // then go back to idle
+			}
 		}
 	}
 
