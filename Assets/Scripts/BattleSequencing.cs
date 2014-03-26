@@ -120,6 +120,7 @@ public class BattleSequencing : MonoBehaviour {
 				sfx.Play(ch.attackSfx);
 				yield return StartCoroutine(ch.StabAnimation());
 				yield return StartCoroutine(targetCharacter.CheckForDeath() );
+				yield return StartCoroutine(ch.IdleAnimation());
 				yield return StartCoroutine(ch.ReturnHomeAnimation());
 
 			} else {

@@ -316,9 +316,11 @@ public class Character { //: MonoBehaviour {
 			sfx.PlayOneShot( deathSfx);
 			yield return helper.StartCoroutine( DeathAnimation()); // show a graphic or animation
 		}
-		else 
+		else {
 			yield return helper.StartCoroutine( StruckAnimation()); // show a 'hurt' animation here
-		//yield return StartCoroutine(ch.IdleAnimation() );  // then go back to idle
+			yield return new WaitForSeconds(1);
+			yield return helper.StartCoroutine( IdleAnimation() );  // then go back to idle
+		}
 	}
 
 }
