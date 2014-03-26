@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class CharacterManager : MonoBehaviour {
 
+	public GameObject[] characterGfxPrefabs;
 	public AudioClip genericAttackSfx, genericDefendSfx, genericMagAttackSfx, genericHealSfx, genericBattleEnterSfx, genericDeathSfx;
 
 	List<Character> allChars;
@@ -115,34 +116,35 @@ public class CharacterManager : MonoBehaviour {
 		{
 		case 0:
 		default:
-			GameObject wiz = (GameObject) GameObject.Instantiate( GameObject.Find("player ghost") );
+			//GameObject wiz = (GameObject) GameObject.Instantiate( GameObject.Find("player ghost") );
+			GameObject wiz = (GameObject) GameObject.Instantiate( characterGfxPrefabs[0]);
+			wiz.GetComponent<SpriteCharacterBuilder>().facingLeft = false;
 			wiz.transform.position = new Vector3( -4.5f, -1.6f, 0);
 			player = new Character( wiz , bc.PCStats);
 			player.name = "Wilma (WIZ)";
 			player.isPC = true;
 			SetGenericSfx(player);
 			player.notifier = new Notifier( player);
-			//player.behavior = new EnemyBehavior( EnemyBehavior.Architype.Player, player);
 			break;
 		case 1:
-			GameObject kni = (GameObject) GameObject.Instantiate( GameObject.Find("player hero") );
+			GameObject kni = (GameObject) GameObject.Instantiate( characterGfxPrefabs[1] );
+			kni.GetComponent<SpriteCharacterBuilder>().facingLeft = false;
 			kni.transform.position = new Vector3( -4.5f, -1.6f, 0);
 			player = new Character( kni, bc.PCStats);
 			player.name = "Nick (KNI)";
 			player.isPC = true;
 			SetGenericSfx(player);
 			player.notifier = new Notifier( player);
-			//player.behavior = new EnemyBehavior( EnemyBehavior.Architype.Player, player);
 			break;
 		case 2:
-			GameObject clr = (GameObject) GameObject.Instantiate( GameObject.Find("player frog") );
+			GameObject clr = (GameObject) GameObject.Instantiate( characterGfxPrefabs[2] );
+			clr.GetComponent<SpriteCharacterBuilder>().facingLeft = false;
 			clr.transform.position = new Vector3( -4.5f, -1.6f, 0);
 			player = new Character( clr, bc.PCStats);
 			player.name = "Chris\t (CLR)";
 			player.isPC = true;
 			SetGenericSfx(player);
 			player.notifier = new Notifier( player);
-			//player.behavior = new EnemyBehavior( EnemyBehavior.Architype.Player, player);	// ok this looks goofy
 			break;
 		}
 		allChars.Add(player);
@@ -153,7 +155,8 @@ public class CharacterManager : MonoBehaviour {
 			Character enemy;
 			if( i%2 == 0)	// evens are ghost healers
 			{
-				GameObject ghost = (GameObject) GameObject.Instantiate(  GameObject.Find("ghost"));
+				GameObject ghost = (GameObject) GameObject.Instantiate(  characterGfxPrefabs[3] );
+				ghost.GetComponent<SpriteCharacterBuilder>().facingLeft = true;
 				ghost.transform.position = new Vector3( 3.0f + (2.3f * (float)(i%2)), (4.8f - -2.5f) / (float) (bc.level+1) * i - 2.5f, 0);  // position the enemy along the right edge
 				enemy = new Character( ghost, bc.level, bc.level, bc.level, bc.level); // make a character with the copy
 				enemy.name = "Ghost " + (i+1);
@@ -162,7 +165,8 @@ public class CharacterManager : MonoBehaviour {
 				enemy.behavior = new HealerArchitype( enemy); 
 				enemy.notifier = new Notifier( enemy);
 			} else { 	// odds are fighters
-				GameObject ghost = (GameObject) GameObject.Instantiate(  GameObject.Find("frog"));
+				GameObject ghost = (GameObject) GameObject.Instantiate(  characterGfxPrefabs[4] );
+				ghost.GetComponent<SpriteCharacterBuilder>().facingLeft = true;
 				ghost.transform.position = new Vector3( 3.0f + (2.3f * (float)(i%2)), (4.8f - -2.5f) / (float) (bc.level+1) * i - 2.5f, 0);  // position the enemy along the right edge
 				enemy = new Character( ghost, bc.level, bc.level, bc.level, bc.level); // make a character with the copy
 				enemy.name = "Frog " + (i+1);

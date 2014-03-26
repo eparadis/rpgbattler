@@ -218,7 +218,7 @@ public class Character { //: MonoBehaviour {
 	public IEnumerator ShootSparklies(Color c)
 	{
 		// we need some particles to be emitted from the character 
-		ParticleSystem ps = gfx.GetComponent<ParticleSystem>();
+		ParticleSystem ps = gfx.GetComponentInChildren<ParticleSystem>();
 		if( ps != null)
 		{
 			ps.startColor = c;
@@ -234,7 +234,7 @@ public class Character { //: MonoBehaviour {
 
 	public IEnumerator AttractSparklies(Color c)
 	{
-		ParticleSystem ps = gfx.GetComponent<ParticleSystem>();
+		ParticleSystem ps = gfx.GetComponentInChildren<ParticleSystem>();
 		if( ps != null)
 		{
 			ps.startColor = c;
