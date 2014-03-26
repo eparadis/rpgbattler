@@ -94,6 +94,7 @@ public class Character { //: MonoBehaviour {
 	// not sure if this should return something
 	public string PhysicalAttack( Character target)
 	{
+		isDefending = false;
 		Debug.Log(string.Format ("{0} is attacking {1}", name, target.name));
 		if( target.isDefending)
 		{
@@ -121,6 +122,7 @@ public class Character { //: MonoBehaviour {
 
 	public string CastHeal( Character target)
 	{
+		isDefending = false;
 		int healAmt = (stats.DEF + stats.MAG) / 2;
 		target.stats.HP += healAmt;	// apply to target
 		if( target.stats.HP > target.stats.maxHP)
@@ -131,6 +133,7 @@ public class Character { //: MonoBehaviour {
 
 	public string CastAttack( Character target)
 	{
+		isDefending = false;
 		int dmg = Random.Range( (stats.MAG+stats.AGI) / 4, (stats.MAG+stats.AGI)/2);
 		if(target.isDefending)
 			dmg /= 2;
