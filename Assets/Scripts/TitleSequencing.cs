@@ -70,7 +70,12 @@ public class TitleSequencing : MonoBehaviour {
 	void ShowCharacterIcons()
 	{
 		foreach( GameObject go in characterIcons)
+		{
 			go.SetActive(true);
+		}
+		characterIcons[0].GetComponent<SpriteAnimator>().Play("cast");	// wizard
+		characterIcons[1].GetComponent<SpriteAnimator>().Play("idle");	// knight
+		characterIcons[2].GetComponent<SpriteAnimator>().Play("defend");	// cleric
 	}
 
 	void HideCharacterIcons()
