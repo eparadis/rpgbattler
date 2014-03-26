@@ -58,14 +58,14 @@ public class LevelAdvanceSequencing : MonoBehaviour {
 			bc.PCStats.HP = bc.PCStats.maxHP;
 
 			// we need to have a Character with an assigned gfx to be able to call Character.AttactSparklies( Color.yellow) or something
-			yield return StartCoroutine( AttractSparklies( Color.yellow ));
+			StartCoroutine( AttractSparklies( Color.yellow ));
 		}
 	}
 
 	// largely copied from Character.cs
 	IEnumerator AttractSparklies(Color c)
 	{
-		ParticleSystem ps = player.GetComponent<ParticleSystem>();
+		ParticleSystem ps = player.GetComponentInChildren<ParticleSystem>();
 		if( ps != null)
 		{
 			ps.startColor = c;
@@ -115,6 +115,7 @@ public class LevelAdvanceSequencing : MonoBehaviour {
 			yield return null;
 		}
 		sfx.Play( menuAccept);
+		yield return new WaitForEndOfFrame();	// so we don't act on a single key press multiple times
 		//Debug.Log("Generic menu selection = " + genericMenuSelection);
 	}
 }
