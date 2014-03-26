@@ -19,6 +19,9 @@ public class Notifier { // : MonoBehaviour {
 		textGO.transform.parent = self.gfx.transform;
 		textGO.transform.localPosition = new Vector3( 0f, 1.5f, -1f);
 
+		if( self.gfx.GetComponent<SpriteCharacterBuilder>().facingLeft )	// if the graphic is flipped
+			textGO.transform.localScale = new Vector3( -1, 1, 1);	// flip the text, so that its correct (ie: double flipped)
+
 		textMesh = textGO.AddComponent<TextMesh>();
 		//Font font = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
 		Font font = GameObject.Find("logic").GetComponent<GUIText>().font;
