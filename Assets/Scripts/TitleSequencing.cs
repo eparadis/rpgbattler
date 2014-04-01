@@ -133,15 +133,18 @@ public class TitleSequencing : MonoBehaviour {
 				genericMenuSelection -= 1;
 				if( genericMenuSelection < 0)
 					genericMenuSelection = menuSize - 1;
+				yield return new WaitForEndOfFrame();	// so we don't act on a single key press multiple times
 			}
 			if( Input.GetKeyDown(KeyCode.DownArrow) )
 			{
 				sfx.Play(menuSelect);
 				genericMenuSelection = (genericMenuSelection + 1) % menuSize;
+				yield return new WaitForEndOfFrame();	// so we don't act on a single key press multiple times
 			}
 			yield return null;
 		}
 		sfx.Play(menuAccept);
 		//Debug.Log("Generic menu selection = " + genericMenuSelection);
+		yield return new WaitForEndOfFrame();	// so we don't act on a single key press multiple times
 	}
 }
