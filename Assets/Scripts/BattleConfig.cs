@@ -2,15 +2,12 @@
 using System.Collections;
 
 public class BattleConfig : MonoBehaviour {
-	
+
+	private const string battleConfigGOName = "Battle Config Singleton";
+
 	public int level;	// level is one-based.  the first level is '1'
 	public int playerCharacter;
 	public CharacterStats PCStats;
-	
-	// Use this for initialization; remember that this is called on the start of a level load, even if we're coming in from a previous scene
-	void Start () {
-		GameObject.DontDestroyOnLoad( gameObject);	// don't allow ourselves to be deleted
-	}
 
 	private void SetDefaults()
 	{
@@ -28,11 +25,12 @@ public class BattleConfig : MonoBehaviour {
 
 	static public BattleConfig GetSingleton()
 	{
-		GameObject ret = GameObject.Find ("Battle Config Singleton");
+		GameObject ret = GameObject.Find (battleConfigGOName);
 		if(ret == null)
 		{
 			Debug.Log("Didn't find a battle configuration; creating one from scratch...");
-			GameObject go = new GameObject( "Battle Config Singleton");
+			GameObject go = new GameObject( battleConfigGOName);
+			GameObject.DontDestroyOnLoad( go);	// don't allow the gameobject to be deleted across scene changes
 			BattleConfig bc = go.AddComponent<BattleConfig>();
 			bc.SetDefaults();
 			return bc;
