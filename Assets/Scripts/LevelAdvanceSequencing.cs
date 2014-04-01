@@ -83,6 +83,8 @@ public class LevelAdvanceSequencing : MonoBehaviour {
 	int genericMenuSelection = 0;
 	IEnumerator GenericSelectionMenu( string title, string[] options)
 	{
+		yield return new WaitForEndOfFrame();	// always wait for one frame to clear input buffer
+
 		//genericMenuSelection = 0;	// don't reset the position because its confusing when its the same menu several times
 		int menuSize = options.Length;
 		while( !Input.GetKeyDown(KeyCode.Return) ) 
@@ -106,11 +108,13 @@ public class LevelAdvanceSequencing : MonoBehaviour {
 				genericMenuSelection -= 1;
 				if( genericMenuSelection < 0)
 					genericMenuSelection = menuSize - 1;
+				yield return new WaitForEndOfFrame();	// so we don't act on a single key press multiple times
 			}
 			if( Input.GetKeyDown(KeyCode.DownArrow) )
 			{
 				sfx.Play( menuSelect);
 				genericMenuSelection = (genericMenuSelection + 1) % menuSize;
+				yield return new WaitForEndOfFrame();	// so we don't act on a single key press multiple times
 			}
 			yield return null;
 		}

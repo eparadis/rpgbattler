@@ -169,6 +169,8 @@ public class BattleSequencing : MonoBehaviour {
 	int genericMenuSelection;
 	IEnumerator GenericSelectionMenu( string title, string[] options)
 	{
+		yield return new WaitForEndOfFrame();	// always wait for one frame to clear input buffer
+
 		genericMenuSelection = 0;
 		int menuSize = options.Length;
 		while( !Input.GetKeyDown(KeyCode.Return) ) 
