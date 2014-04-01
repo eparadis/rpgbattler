@@ -89,15 +89,17 @@ public class TitleSequencing : MonoBehaviour {
 	{
 		string credits = "\n\n\n\n\n\n\n" +
 						 "Programming: Ed Paradis\n" +
-						 "        www.edparadis.com\n" +
+						 "        edparadis.com\n" +
+						 "        github.com/eparadis\n" +
+					     "\n" +
 						 "Music: 'Subsidized'\n" +
 						 "       by Yubatake\n" +
 						 "       CC-By-3.0\n" +
 						 "       opengameart.org\n" +
 						 "Sfx: Ed Paradis\n" +
 						 "     with bfxr.net\n" +
-						 "Gfx: stolen from FF6 :(";
-		guiText.text = "RPG Battler\nPress any key to start\n" + credits;;
+						 "Programmer Art: Ed P.";
+		guiText.text = "RPG Battler\n\n** Press any key to start! **\n" + credits;;
 		while( !Input.anyKeyDown )
 			yield return null;
 		sfx.Play( menuAccept);
