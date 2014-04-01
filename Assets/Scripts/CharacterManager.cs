@@ -153,7 +153,7 @@ public class CharacterManager : MonoBehaviour {
 		for( int i=0; i<bc.level; i+=1)
 		{
 			Character enemy;
-			if( i%2 == 0)	// evens are ghost healers
+			if( i%2 == 1)	// odds are healers
 			{
 				GameObject ghost = (GameObject) GameObject.Instantiate(  characterGfxPrefabs[3] );
 				ghost.GetComponent<SpriteCharacterBuilder>().facingLeft = true;

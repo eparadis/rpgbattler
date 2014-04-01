@@ -135,6 +135,7 @@ public class Character { //: MonoBehaviour {
 	{
 		isDefending = false;
 		int dmg = Random.Range( (stats.MAG+stats.AGI) / 4, (stats.MAG+stats.AGI)/2);
+		dmg += 1;	// balance
 		if(target.isDefending)
 			dmg /= 2;
 		if( dmg == 0) dmg = 1;	// at least a point of damage
