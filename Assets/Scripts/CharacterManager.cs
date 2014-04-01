@@ -159,7 +159,7 @@ public class CharacterManager : MonoBehaviour {
 				ghost.GetComponent<SpriteCharacterBuilder>().facingLeft = true;
 				ghost.transform.position = new Vector3( 3.0f + (2.3f * (float)(i%2)), (4.8f - -2.5f) / (float) (bc.level+1) * i - 2.5f, 0);  // position the enemy along the right edge
 				enemy = new Character( ghost, bc.level, bc.level, bc.level, bc.level); // make a character with the copy
-				enemy.name = "Ghost " + (i+1);
+				enemy.name = "Cleric " + (i+1);
 				enemy.isPC = false;
 				SetGenericSfx(enemy);
 				enemy.behavior = new HealerArchitype( enemy); 
@@ -169,7 +169,7 @@ public class CharacterManager : MonoBehaviour {
 				ghost.GetComponent<SpriteCharacterBuilder>().facingLeft = true;
 				ghost.transform.position = new Vector3( 3.0f + (2.3f * (float)(i%2)), (4.8f - -2.5f) / (float) (bc.level+1) * i - 2.5f, 0);  // position the enemy along the right edge
 				enemy = new Character( ghost, bc.level, bc.level, bc.level, bc.level); // make a character with the copy
-				enemy.name = "Frog " + (i+1);
+				enemy.name = "Fighter " + (i+1);
 				enemy.isPC = false;
 				SetGenericSfx(enemy);
 				enemy.behavior = new SimpleArchitype( enemy, 0.75f, 0.25f, 0, 0);	// a fighter kind of guy 
